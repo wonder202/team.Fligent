@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BoardImageMapper">
+
+    <!-- 게시글 삭제를 위한 이미지 삭제 -->
+    <delete id="deleteBoardOneImage" parameterType="map"  >
+    <!-- DELETE FROM BOARDIMG WHERE BNO = 183 AND BIMAGENO = 198 -->
+            DELETE FROM BOARDIMG WHERE BNO = #{bno} AND BIMAGENO = #{bimageno}
+    </delete>
+
+        <delete id="deleteBoardImage" parameterType="Long" >
+            DELETE FROM BOARDIMG WHERE BNO = #{bno}
+    </delete>
+
+
+
+
+
+
+    
+
+    <insert id="insertBoardbatchImage" parameterType="list">
+                <foreach collection='list' item='tmp' separator='; '>
+                   INSERT INTO BOARDIMG(BIMAGENO, BNO, IMAGENAME, IMAGESIZE,
+                    IMAGETYPE, IMAGEDATA , REGDATE) 
+                    VALUES (SEQ_BOARDIMG_NO.NEXTVAL,#{tmp.board.bno},#{tmp.imagename},#{tmp.imagesize},#{tmp.imagetype},#{tmp.imagedata , jdbcType=BLOB},to_date(sysdate,'yyyy-mm-dd hh24:mi') )
+                </foreach> 
+    </insert> 
+    <insert id="insertBoardImage" parameterType="list">
+         INSERT INTO BOARDIMG(BIMAGENO, BNO, IMAGENAME, IMAGESIZE,
+                    IMAGETYPE, IMAGEDATA , REGDATE) 
+                    VALUES (SEQ_BOARDIMG_NO.NEXTVAL,#{board.bno},#{imagename},#{imagesize},#{imagetype},#{imagedata , jdbcType=BLOB},to_date(sysdate,'yyyy-mm-dd hh24:mi') )
+    </insert>
+
+    <resultMap id="retMap1" type="com.example.entity.BoardImg">
+        <result property="imagedata" column="IMAGEDATA" jdbcType="BLOB" javaType="[B"   />
+    </resultMap>
+    
+    <select id="selectboardimage" parameterType="Long" resultMap="retMap1">
+        SELECT B.* FROM BOARDIMG B WHERE B.BIMAGENO = #{bno} 
+    </select>
+
+    
+
+    <select id="selectImageBnoOne" parameterType="Long"
+          resultType="com.example.entity.BoardImg">
+          SELECT 
+               NVL(MIN(B.BNO),0) BNO 
+          FROM 
+               BOARDIMG B 
+          WHERE 
+               B.BNO={board.bno}
+</select> 
+    <select id="selectboardimageList" parameterType="Long" resultType="com.example.entity.BoardImg">
+        SELECT B.bimageno FROM BOARDIMG B WHERE BNO=#{bno}
+    </select>
+
+    <update id="updateImage" parameterType="com.example.entity.BoardImg">
+        UPDATE BOARDIMG SET IMAGENAME=#{imagename}, IMAGESIZE=#{imagesize}, IMAGETYPE=#{imagetype} , IMAGEDATA=#{imagedata, jdbcType = BLOB} WHERE BIMAGENO=#{bimageno}
+    </update>
+</mapper>
+
+<!-- INSERT INTO ITEMTBL(NO, NAME, CONTENT, PRICE, QUANTITY, REGDATE, SELLER)
+SELECT SEQ_BOARDIMG_NO.NEXTVAL, T1. * FROM (SELECT '${item.name}' NAME, '${item.content}' CONTENT, '${item.price}' PRICE, 
+                         '${item.quantity}' QUANTITY, CURRENT_DATE, '${item.seller}' SELLER FROM DUAL) T1 -->

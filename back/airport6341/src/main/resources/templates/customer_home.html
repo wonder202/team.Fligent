@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈화면</title>
+</head>
+<body>
+    <div class="container" style="margin :100px;">
+        <!-- http://127.0.0.1:8080/ROOT/customer/home.do -->
+        <h3>고객 홈화면</h3>
+        <hr />
+
+        세션에 들어있는 내용들 : <p th:text="${user}"></p>
+
+        아이디만 꺼내기 : <p th:text="${user.username}"></p>
+        
+        권한만 꺼내기 : <p th:text="${user.authorities[0]}"></p>
+        <hr />
+
+
+        <form th:action="@{/member/logout.do}" method="post">
+            <input type="submit" value="로그아웃" />
+
+        <a th:href="@{/home.do}" value="홈" ><button>홈</button></a>            
+        </form>
+        
+
+    </div>
+</body>
+</html>

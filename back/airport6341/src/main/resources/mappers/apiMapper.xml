@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ApiMapper">
+        <insert id="airportleasecontractinfo" parameterType="list">
+        INSERT INTO AIRPORTSTOREINFO (AIRPORTSTORENO, AIRPORTCODE, AIRPORTNAME, LEASELOCATION, STORENAME, TYPEOFBUSINESS )
+          SELECT SEQ_AIRPORTSTOREINFO_NO.NEXTVAL, T1.* FROM (
+               <foreach collection='list' item='item' separator='UNION ALL '>
+                    SELECT '${item.airportCode}' AIRPORTCODE, 
+                         '${item.airportName}' AIRPORTNAME, 
+                         '${item.leaseLocation}' LEASELOCATION, 
+                         '${item.storeName}' STORENAME, 
+                         '${item.typeOfBusiness}' TYPEOFBUSINESS FROM DUAL
+               </foreach>
+          ) T1
+        </insert>   
+
+        <delete id="deletedata">
+                DELETE FROM FLIGHT
+        </delete>
+
+
+        <update id="dropseq">
+                DROP SEQUENCE SEQ_FLY_NO
+        </update>
+
+
+        <insert id="createseq">
+                CREATE SEQUENCE SEQ_FLY_NO START WITH 1 INCREMENT BY 1 NOMAXVALUE NOCACHE
+        </insert>
+
+
+        <insert id="apisave" parameterType="List">
+                <foreach collection="list" item="obj" separator="; ">
+                INSERT INTO FLIGHT(FLY_NO , AIRFLN , AIRLINEKOREAN , BOARDINGKOR , ARRIVEDKOR, STD, ETD) 
+                VALUES(SEQ_FLY_NO.NEXTVAL, #{obj.airFln}, #{obj.airlineKorean}, #{obj.boardingKor}, #{obj.arrivedKor}, #{obj.std}, #{obj.etd})
+                </foreach>
+        </insert>
+
+
+        <select id="apiselectcount" parameterType="map" resultType="long">
+                SELECT COUNT(*) FROM FLIGHT WHERE 
+                <if test="type == 'O'.toString()">
+                BOARDINGKOR = #{aircode} 
+                </if>
+                <if test="type == 'I'.toString()">
+                ARRIVEDKOR = #{aircode}
+                </if>
+                
+                AND STD <![CDATA[>]]> #{schStTime} AND STD <![CDATA[<]]> #{schEdTime} 
+                
+        </select>
+
+
+        <!-- <select id="apiselectlist" parameterType="String" resultType="long"> -->
+        <select id="apiselectlist" parameterType="map" resultType="com.example.dto.ApiFlyDTO">
+                SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY FLY_NO ASC) ROWN FROM FLIGHT WHERE 
+                <if test="type == 'O'.toString()">
+                BOARDINGKOR = #{aircode} 
+                </if>
+                <if test="type == 'I'.toString()">
+                ARRIVEDKOR = #{aircode}
+                </if>
+                AND STD <![CDATA[>]]> #{schStTime} AND STD <![CDATA[<]]> #{schEdTime}) WHERE ROWN BETWEEN #{start} AND #{start}+9
+        </select>     
+</mapper>

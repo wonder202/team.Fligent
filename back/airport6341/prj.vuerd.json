@@ -1,0 +1,4556 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -893.5999999999999,
+    "scrollLeft": -421.40000000000026,
+    "zoomLevel": 0.6,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "MySQL",
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "VS2015",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "MEMBER",
+        "comment": "회원",
+        "columns": [
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          },
+          {
+            "name": "USERPW",
+            "comment": "비밀번호",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "505851d2-6c43-42cf-9738-a2ed5958c839"
+          },
+          {
+            "name": "PHONE",
+            "comment": "연락처",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "03e85576-45c7-4aa9-b5a8-931f7475da88"
+          },
+          {
+            "name": "NICKNAME",
+            "comment": "닉네임",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 68.52978515625,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "5a5f2956-90bb-47ae-b208-9d2a01d9c1a4"
+          },
+          {
+            "name": "AIRPORT",
+            "comment": "공항이름",
+            "dataType": "VARCHAR2(200)",
+            "default": "GMP",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "2fc721a7-e1d7-4967-8c13-5595e89dab32"
+          },
+          {
+            "name": "ROLE",
+            "comment": "권한(회원,관리자)",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 103.765625,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "ddc49997-f545-43e5-b2f4-de9815bcf80e"
+          },
+          {
+            "name": "BIRTH",
+            "comment": "생일",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "e5cab92d-3bc5-43c3-8841-e5b72d0aec24"
+          },
+          {
+            "name": "BLOCK",
+            "comment": "탈퇴여부(0,1)",
+            "dataType": "NUMBER",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 79.0859375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2f0734a3-21d5-437e-8941-feae3e2b225a"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "가입일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "207a3449-b63f-46e8-9f9e-626fd6c710b2"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 13.007,
+          "top": 329.1171,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "8f950336-933d-4f2f-910e-349e07fc2db0"
+      },
+      {
+        "name": "MEMBERIMG",
+        "comment": "회원이미지",
+        "columns": [
+          {
+            "name": "MIMAGENO",
+            "comment": "프사번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 73.56982421875,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "21b8a66a-33c6-467c-8e50-5d5dfd00ddbf"
+          },
+          {
+            "name": "IMAGENAME",
+            "comment": "프사이름",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 78.7939453125,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "8e377ebc-c87e-4637-b784-654ef44d1b45"
+          },
+          {
+            "name": "IMAGESIZE",
+            "comment": "프사크기",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 66.51123046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "bbf94514-10e7-4a24-bb94-12be872646fc"
+          },
+          {
+            "name": "IMAGETYPE",
+            "comment": "프사타입",
+            "dataType": "VARCHAR2(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 70.275390625,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "1e5833f5-bbaa-468d-a5b1-98f0fd1a84f8"
+          },
+          {
+            "name": "IMAGEDATA",
+            "comment": "프사데이터",
+            "dataType": "BLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.73193359375,
+              "widthComment": 67,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1c951715-13c0-48a6-8cb2-8c2ae1c8f3e3"
+          },
+          {
+            "name": "APIIMAGEURL",
+            "comment": "소셜로그인이미지URL",
+            "dataType": "BLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 84.43701171875,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6464ed6e-cc02-4cd0-9698-e3fce4d25514"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "41fc487a-a650-4a5a-b1df-66f53db2a98a"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "2b59de69-c377-4a09-bf50-2878b58f0ce6"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 32.1089,
+          "top": 26.8951,
+          "zIndex": 1,
+          "widthName": 79.3525390625,
+          "widthComment": 67
+        },
+        "visible": true,
+        "id": "8d8d837c-465e-44b1-b1cf-c8897cd59c8e"
+      },
+      {
+        "name": "BOARD",
+        "comment": "게시글",
+        "columns": [
+          {
+            "name": "BNO",
+            "comment": "게시물번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "e04f5539-8497-407a-9d24-22772c4e30c5"
+          },
+          {
+            "name": "TITLE",
+            "comment": "제목",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "326ba590-b772-49b9-80ba-e11285a90a63"
+          },
+          {
+            "name": "CONTENT",
+            "comment": "내용",
+            "dataType": "CLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60.6142578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "c1bf9470-b227-421c-8feb-a9e6b64e15eb"
+          },
+          {
+            "name": "HIT",
+            "comment": "조회수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "24d7b8c3-2e4c-429e-82bc-06e97ef6ba9b"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "작성일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "c9ef6840-3c33-4e7e-a802-baff79778efc"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "ee7a6a7f-162f-40be-a6d0-bddf2716661a"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 684.492,
+          "top": 224.779,
+          "zIndex": 8,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "628c0120-cb9b-46a0-8c15-69a8abd8a880"
+      },
+      {
+        "name": "REPLY",
+        "comment": "댓글",
+        "columns": [
+          {
+            "name": "RNO",
+            "comment": "댓글번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a900e514-e042-4f66-b61f-670a556a0b9c"
+          },
+          {
+            "name": "CONTENT",
+            "comment": "내용",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60.6142578125,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "f20d7456-580b-423c-9431-3e8ab5d9c6fe"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "작성일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "b510be72-75a5-4790-9621-6e404fe0b7e8"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "32fa6ca0-445b-4c9f-b322-029059ac119b"
+          },
+          {
+            "name": "BNO",
+            "comment": "게시물번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "203305fd-8981-479a-a033-c8d196805cca"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1282.8253,
+          "top": 268.2812,
+          "zIndex": 9,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "bef42623-410e-43ce-811a-39dbaa32ace1"
+      },
+      {
+        "name": "BOARDIMG",
+        "comment": "게시글이미지",
+        "columns": [
+          {
+            "name": "BIMAGENO",
+            "comment": "게시물이미지번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 69.234375,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b3853ac5-b98e-4730-b9f8-4c0fca6782df"
+          },
+          {
+            "name": "IMAGENAME",
+            "comment": "프사이름",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 78.7939453125,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "72b91e88-c98f-4d8e-843b-f2c5258cdd26"
+          },
+          {
+            "name": "IMAGETYPE",
+            "comment": "프사타입",
+            "dataType": "VARCHAR2(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 70.275390625,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "0b6c9283-8651-4c61-913d-db48598a383e"
+          },
+          {
+            "name": "IMAGESIZE",
+            "comment": "프사크기",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 66.51123046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2a7f9443-b4da-4254-b81d-cd73bc0d916d"
+          },
+          {
+            "name": "IMAGEDATA",
+            "comment": "프사데이터",
+            "dataType": "BLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.73193359375,
+              "widthComment": 67,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "9a72b317-fb44-461a-911e-56f979cead35"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "90492a5e-8f6d-4993-8174-714f3cc4a5b7"
+          },
+          {
+            "name": "BNO",
+            "comment": "게시물번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2fe40764-755d-419b-8464-b4d2f4090b4b"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1232.3642,
+          "top": 30.8222,
+          "zIndex": 7,
+          "widthName": 69.818359375,
+          "widthComment": 80
+        },
+        "visible": true,
+        "id": "a7f5b018-c791-4f59-ad04-1554d3283df2"
+      },
+      {
+        "name": "LIKES",
+        "comment": "좋아요",
+        "columns": [
+          {
+            "name": "LNO",
+            "comment": "좋아요번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "9c6ba559-585f-409e-8c43-e7c6735024c8"
+          },
+          {
+            "name": "BNO",
+            "comment": "게시물번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8ad9586d-b6ad-4618-97f8-b52138a4c6d8"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "5e7abdc4-0b63-43d4-b09b-456d8c40e205"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 612.1871,
+          "top": 31,
+          "zIndex": 4,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "b82924d1-fcb5-460f-9729-fed1fa70dbd7"
+      },
+      {
+        "name": "HASHTAG",
+        "comment": "해시태그",
+        "columns": [
+          {
+            "name": "HNO",
+            "comment": "해시태그번호",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5ae7b97b-bb1a-4e99-8e2a-0c22edb6f11e"
+          },
+          {
+            "name": "NAME",
+            "comment": "해시태그이름",
+            "dataType": "VARCHAR(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "83df531d-872c-4bba-8a18-85cc5df3cdd9"
+          },
+          {
+            "name": "HCOLOR",
+            "comment": "해시태그색상",
+            "dataType": "VARCHAR2(50)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "29acd52e-89c9-4e98-a01f-0df78237e8bd"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1166.4845,
+          "top": 614.844,
+          "zIndex": 12,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "cb261bd2-0ac6-493f-a623-ab375adeb9a3"
+      },
+      {
+        "name": "ITEM",
+        "comment": "물품",
+        "columns": [
+          {
+            "name": "INO",
+            "comment": "물품번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "d55e02d1-d87d-44ac-b6c0-0a0972e8fcc2"
+          },
+          {
+            "name": "NAME",
+            "comment": "물품명",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "2ed28b31-34cb-443a-875b-e8e5433f4055"
+          },
+          {
+            "name": "CONTENT",
+            "comment": "물품설명",
+            "dataType": "CLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60.6142578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "168cc543-c671-4239-9872-4da5a14b7e79"
+          },
+          {
+            "name": "PRICE",
+            "comment": "가격",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5ce66a56-c66d-45ed-b7c7-e201eb86a244"
+          },
+          {
+            "name": "QUANTITY",
+            "comment": "수량",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 64.3212890625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "99ebfef4-f793-455f-b800-b67384196aeb"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "00fbe482-2693-423c-8b09-8445ffbb1a11"
+          },
+          {
+            "name": "ICATENO",
+            "comment": "물품카테고리번호(SEQ)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 120,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "584f8651-44dd-4ca2-8f90-d51c1bad5e82"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "433c5f23-c8aa-4cbf-b994-1f643e9d0885"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 58.1971,
+          "top": 655.5342,
+          "zIndex": 3,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "595a8459-07e2-4fbc-8416-4c22a96b58bb"
+      },
+      {
+        "name": "ADDRESS",
+        "comment": "주소",
+        "columns": [
+          {
+            "name": "ANO",
+            "comment": "주소번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "101919d0-6698-4d79-9e90-94b194bd5941"
+          },
+          {
+            "name": "POSTCODE",
+            "comment": "우편번호",
+            "dataType": "VARCHAR2(6)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0126953125,
+              "widthComment": 60,
+              "widthDataType": 82.1328125,
+              "widthDefault": 60
+            },
+            "id": "3f05f95c-056c-4501-ba4c-a023d6076851"
+          },
+          {
+            "name": "ADDRESS",
+            "comment": "주소",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "61156f18-8475-476f-8365-46d7f880c751"
+          },
+          {
+            "name": "COMMENT",
+            "comment": "요청사항",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.5712890625,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "de9ad667-76b7-445d-8635-40d1243d67f6"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "fca9034f-f319-474e-a32c-df49f6ead89b"
+          },
+          {
+            "name": "NAME",
+            "comment": "수령자이름",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 67,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "cf3659eb-15d3-43f1-88a2-e77b6b0b1af0"
+          },
+          {
+            "name": "PHONE",
+            "comment": "수령자연락처",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "55f3153c-179d-4bcb-a0be-fe9ddb9eec6d"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "5b357371-5a3b-4328-8c48-1e29030d2970"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 694.8673,
+          "top": 620.734,
+          "zIndex": 10,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "9fe0d3f1-7cf5-4ece-9e8e-0cba87fe8d2f"
+      },
+      {
+        "name": "ORDERS",
+        "comment": "주문",
+        "columns": [
+          {
+            "name": "ONO",
+            "comment": "주문번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "36916eb5-6827-45a1-9a45-5016e0d2e9ac"
+          },
+          {
+            "name": "CNT",
+            "comment": "주문수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ecf22ac6-0c61-4259-a1b2-5b0ee1b066c9"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "f4100d09-37d9-4a32-9ab7-4cc63155e28d"
+          },
+          {
+            "name": "ITEMNO",
+            "comment": "물품번호",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "98b36349-57d0-483a-a92c-a13ca8b2f086"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "83ceb6ef-0709-43b4-bbfe-29d6f76b8c77"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1185.1765,
+          "top": 979.1828,
+          "zIndex": 24,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "dcdacb85-c35a-4825-807a-4493fdd598da"
+      },
+      {
+        "name": "CART",
+        "comment": "장바구니",
+        "columns": [
+          {
+            "name": "CNO",
+            "comment": "장바구니번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 111.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "e0a8010d-857d-4c71-bd18-27df504aad66"
+          },
+          {
+            "name": "CNT",
+            "comment": "장바구니수량",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "e874220b-e859-45b2-99d7-999d141504a4"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "c30d0d10-63dc-486a-9ff9-8e68e02dc04c"
+          },
+          {
+            "name": "INO",
+            "comment": "물품번호",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "266073e4-fc2a-4cae-997f-ae71837bf288"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "678c376a-2efd-47f4-895a-eb2187ebd107"
+          },
+          {
+            "name": "ONO",
+            "comment": "주문번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2c9188ab-3ba1-4337-a974-44ac71e37073"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1479.6389,
+          "top": 773.8217,
+          "zIndex": 23,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "24217324-3c62-4d6c-8b05-43e8d414d5c8"
+      },
+      {
+        "name": "HASHTAGMAPPING",
+        "comment": "게시글/해시태그매핑",
+        "columns": [
+          {
+            "name": "HMAPNO",
+            "comment": "매핑번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2e267949-934a-4582-8890-98e42460b217"
+          },
+          {
+            "name": "BNO",
+            "comment": "게시물번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "acb76fee-0b7b-4b2f-b44c-e9bc19c3bf31"
+          },
+          {
+            "name": "HNO",
+            "comment": "해시태그번호",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6f06c20d-cb16-4537-b28c-8b4771424855"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1432.4662,
+          "top": 456.6659,
+          "zIndex": 11,
+          "widthName": 117.73046875,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "1e0dd1ed-405e-4350-a804-7595ddef05db"
+      },
+      {
+        "name": "ITEMCATE",
+        "comment": "물품카테고리",
+        "columns": [
+          {
+            "name": "ICATENO",
+            "comment": "물품카테고리번호(SEQ)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 120,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "e6c38947-49ac-4cf3-9d94-01ce455d4a2c"
+          },
+          {
+            "name": "CATENAME",
+            "comment": "카테고리이름",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 68.60595703125,
+              "widthComment": 80,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "16a0b17e-69d8-4b17-b62f-7ec79e5e25d4"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 104.7777,
+          "top": 959.0002,
+          "zIndex": 6,
+          "widthName": 60.55078125,
+          "widthComment": 80
+        },
+        "visible": true,
+        "id": "264fc938-17fe-4fb7-8b61-4faf4d02e7aa"
+      },
+      {
+        "name": "ITEMIMG",
+        "comment": "물품이미지",
+        "columns": [
+          {
+            "name": "IIMAGENO",
+            "comment": "이미지번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 65.1591796875,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "03d07535-13d2-4f02-bc3a-9a01d5347826"
+          },
+          {
+            "name": "IDX",
+            "comment": "이미지인덱스",
+            "dataType": "NUMBER",
+            "default": "0",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "83c310a8-cd7f-45d3-9b7d-f5d5c65f7c39"
+          },
+          {
+            "name": "IMAGENAME",
+            "comment": "이미지이름",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 78.7939453125,
+              "widthComment": 67,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "67bf010d-5528-473b-a7d8-b731d11a4083"
+          },
+          {
+            "name": "IMAGESIZE",
+            "comment": "이미지사이즈",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 66.51123046875,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7a874c59-33f8-4d2f-8d5c-51b7bc9e6fcc"
+          },
+          {
+            "name": "IMAGETYPE",
+            "comment": "이미지타입",
+            "dataType": "VARCHAR2(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 70.275390625,
+              "widthComment": 67,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "0118433c-1cd6-4c34-a489-10b818800252"
+          },
+          {
+            "name": "IMAGEDATA",
+            "comment": "이미지데이터",
+            "dataType": "BLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.73193359375,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b3b5b123-2770-420d-9b5d-0e40eb8883e1"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "8653755b-50d6-4144-a481-67c16efe13b2"
+          },
+          {
+            "name": "ITEMNO",
+            "comment": "물품번호",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "27707cb5-a553-469c-a1a2-16f6ab2587d2"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 633,
+          "top": 889.723,
+          "zIndex": 5,
+          "widthName": 60,
+          "widthComment": 67
+        },
+        "visible": true,
+        "id": "7997f293-0fc2-4f5c-a931-37aa344d57c5"
+      },
+      {
+        "name": "TOKEN",
+        "comment": "토큰",
+        "columns": [
+          {
+            "name": "TOKEN",
+            "comment": "토큰값",
+            "dataType": "VARCHAR2(500)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "2aa32ddc-2902-467a-82d5-7f29b3aec1a2"
+          },
+          {
+            "name": "USERID",
+            "comment": "아이디(이메일)",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 87.921875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "caf2eda7-dd87-4f41-9f56-2aeed6f357c1"
+          },
+          {
+            "name": "ROLE",
+            "comment": "권한",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "2b075f5d-9fd5-473c-9c3e-63cbec91bd74"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "40574b58-1d81-4c5c-bbad-b09fdfe7fe95"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 687.8,
+          "top": 443.2,
+          "zIndex": 26,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "e7a9bef2-6749-4c2a-89d5-ec9906dde00b"
+      },
+      {
+        "name": "API_AIRPORTSTOREINFO",
+        "comment": "공항별 상업시설",
+        "columns": [
+          {
+            "name": "AIRPORTSTORENO",
+            "comment": "상업시설번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 112.04931640625,
+              "widthComment": 111.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a920d923-25da-4408-9cb4-2e2e883ead74"
+          },
+          {
+            "name": "AIRPORTCODE",
+            "comment": "공항코드",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 87.515625,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "0c2f4858-2aac-48cb-b5e9-43b09d75c29f"
+          },
+          {
+            "name": "AIRPORTNAME",
+            "comment": "공항이름",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 91.12109375,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "66c5c886-810d-4834-9b6b-ef47750d3058"
+          },
+          {
+            "name": "LEASELOCATION",
+            "comment": "임대위치",
+            "dataType": "VARCHAR2(40)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 99.43017578125,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "b482391d-b243-45ec-9f45-011695c20be9"
+          },
+          {
+            "name": "STORENAME",
+            "comment": "매장이름",
+            "dataType": "VARCHAR2(40)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.2197265625,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "f831746f-d386-42fe-95f8-666e4e816bae"
+          },
+          {
+            "name": "TYPEOFBUSINESS",
+            "comment": "업종",
+            "dataType": "VARCHAR2(40)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 105.212890625,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "6b48f4b4-00fe-468f-8a08-77c1e655a4d4"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 644.567,
+          "top": 1785.1888,
+          "zIndex": 16,
+          "widthName": 147.06298828125,
+          "widthComment": 97.5703125
+        },
+        "visible": true,
+        "id": "be38e5e6-a6a4-4841-bbfa-f0a1e63c3236"
+      },
+      {
+        "name": "API_AIRPORTSTOREIMG",
+        "comment": "상업시설 이미지",
+        "columns": [
+          {
+            "name": "SIMGNO",
+            "comment": "이미지번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 98.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "75ff658b-0571-4ea1-af52-8a50e31abab8"
+          },
+          {
+            "name": "IMAGEDATA",
+            "comment": "이미지데이터",
+            "dataType": "BLOB",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.73193359375,
+              "widthComment": 80,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7f3f73f4-6820-4e80-8618-3dd9f52b470e"
+          },
+          {
+            "name": "IMAGETYPE",
+            "comment": "이미지타입",
+            "dataType": "VARCHAR2(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 70.275390625,
+              "widthComment": 67,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "1898de4d-6071-477c-82c6-e28f2a28fb28"
+          },
+          {
+            "name": "IMAGENAME",
+            "comment": "이미지이름",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 78.7939453125,
+              "widthComment": 67,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "81b35f9a-b48b-4556-a10d-5daaa4d40bfa"
+          },
+          {
+            "name": "REGDATE",
+            "comment": "등록일",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_DATE",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 71.93212890625,
+              "widthDefault": 94.6884765625
+            },
+            "id": "d0d38850-a05d-408c-8940-2cc0c29e9268"
+          },
+          {
+            "name": "AIRPORTSTORENO",
+            "comment": "상업시설번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 112.04931640625,
+              "widthComment": 111.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "01bcdd67-2d71-41e0-8a76-cc9c54fcc138"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 22.0518,
+          "top": 1770.7227,
+          "zIndex": 15,
+          "widthName": 141.623046875,
+          "widthComment": 97.5703125
+        },
+        "visible": true,
+        "id": "16db468b-59b0-43d7-ad3c-0cf34585c644"
+      },
+      {
+        "name": "AIRPORTYOUTUBEURL",
+        "comment": "공항별 유튜브 URL",
+        "columns": [
+          {
+            "name": "YNO(SEQ) ",
+            "comment": "유튜브URL번호",
+            "dataType": "NUMBER ",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 65.654296875,
+              "widthComment": 90.30224609375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "89760a9f-e374-4612-a1de-94ab3ef6d4b6"
+          },
+          {
+            "name": "YOUTUBEURL ",
+            "comment": "유튜브URL주소",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 86.45556640625,
+              "widthComment": 90.30224609375,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "a65a39dd-2276-479e-b888-4014446e5501"
+          },
+          {
+            "name": "AIRPORTCODE ",
+            "comment": "공항코드",
+            "dataType": "VARCHAR2(20) ",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 92.0859375,
+              "widthComment": 60,
+              "widthDataType": 93.86328125,
+              "widthDefault": 60
+            },
+            "id": "1791c41a-bdfd-4202-8ce5-65b4bea53c48"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 599.5716,
+          "top": 1138.6112,
+          "zIndex": 18,
+          "widthName": 134.056640625,
+          "widthComment": 112.44287109375
+        },
+        "visible": true,
+        "id": "dbe37322-6a5d-4c73-89a0-af234816bccf"
+      },
+      {
+        "name": "API_WEATHER",
+        "comment": "단기예보API",
+        "columns": [
+          {
+            "name": "BASEDATE",
+            "comment": "발표일자",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 62.2265625,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "83d2a081-77f5-40fe-8d7c-3946569db30d"
+          },
+          {
+            "name": "BASETIME",
+            "comment": "발표시각",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 61.03955078125,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "073ce900-378c-44e6-9a79-91fe82b4088b"
+          },
+          {
+            "name": "PTYCATEGORY",
+            "comment": "카테고리(강수형태)",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 87.19189453125,
+              "widthComment": 113.921875,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "823e9a76-6115-41c1-8232-fbbd43951b6f"
+          },
+          {
+            "name": "PTYVALUE",
+            "comment": "강수형태 값",
+            "dataType": "VARCHAR2(5)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 61.7822265625,
+              "widthComment": 71.5703125,
+              "widthDataType": 82.1328125,
+              "widthDefault": 60
+            },
+            "id": "0298d095-5442-4081-b860-5875524aa79d"
+          },
+          {
+            "name": "REHCATEGORY",
+            "comment": "카테고리(습도)",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 89.69287109375,
+              "widthComment": 87.921875,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "557bfd7d-ea05-490b-8975-1b5f3f35e2f2"
+          },
+          {
+            "name": "REHVALUE",
+            "comment": "습도값",
+            "dataType": "VARCHAR2(5)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.97216796875,
+              "widthComment": 60,
+              "widthDataType": 82.1328125,
+              "widthDefault": 60
+            },
+            "id": "c3a882a2-0518-4c7a-941f-bdf6a5697ef8"
+          },
+          {
+            "name": "SKYCATEGORY",
+            "comment": "카테고리(하늘상태)",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 87.36962890625,
+              "widthComment": 113.921875,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "24e5d362-79f8-4474-aaa2-979c7245f534"
+          },
+          {
+            "name": "SKYVALUE",
+            "comment": "하늘상태 값",
+            "dataType": "VARCHAR2(5)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 61.9599609375,
+              "widthComment": 71.5703125,
+              "widthDataType": 82.1328125,
+              "widthDefault": 60
+            },
+            "id": "7b7e54d2-9e9c-434f-9d33-8a2592e16264"
+          },
+          {
+            "name": "TMPCATEGORY",
+            "comment": "카테고리(1시간 기온)",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 91.90185546875,
+              "widthComment": 120,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "ca477253-8e83-429b-bcad-75cf67a88946"
+          },
+          {
+            "name": "TMPVALUE",
+            "comment": "1시간 기온 값",
+            "dataType": "VARCHAR2(5)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 66.18115234375,
+              "widthComment": 83.30078125,
+              "widthDataType": 82.1328125,
+              "widthDefault": 60
+            },
+            "id": "7eafa92c-6e53-4ff6-9b8d-2dc6c1bc3c0a"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 654.8888,
+          "top": 1294.0555,
+          "zIndex": 20,
+          "widthName": 84.76708984375,
+          "widthComment": 73.4873046875
+        },
+        "visible": true,
+        "id": "ddbf19d1-44d1-47a3-ad08-f91bbd6d9cb4"
+      },
+      {
+        "name": "API_FLIGHTINFO",
+        "comment": "실시간 항공기 운항정보 API",
+        "columns": [
+          {
+            "name": "AIRFLN",
+            "comment": "항공편명",
+            "dataType": "VARCHAR2(14)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "497dee5e-3892-420d-90c7-bc1af85e1f51"
+          },
+          {
+            "name": "AIRLINEKOREAN",
+            "comment": "항공사(국문)",
+            "dataType": "VARCHAR2(50)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 98.7509765625,
+              "widthComment": 74.921875,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "5bc750d5-a80c-4539-9aa7-d4742f738003"
+          },
+          {
+            "name": "BOARDINGKOR",
+            "comment": "출발공항",
+            "dataType": "VARCHAR2(40)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 92.8857421875,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "c17e7aa7-42da-4d9d-8c8c-4c91f8b6491f"
+          },
+          {
+            "name": "ARRIVEDKOR",
+            "comment": "도착공항",
+            "dataType": "VARCHAR2(40)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 79.25732421875,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "3d360366-b799-42ba-88ea-258d90ab724c"
+          },
+          {
+            "name": "STD",
+            "comment": "예정시간",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "effba578-8336-47d9-808e-3f12f93a926d"
+          },
+          {
+            "name": "ETD",
+            "comment": "변경시간",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "fad63748-d5e5-4250-a748-b1aa996ec896"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 89.3055,
+          "top": 1347.1389,
+          "zIndex": 19,
+          "widthName": 98.7255859375,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "42b8af0f-ba0a-422a-b981-6e437ad7e134"
+      },
+      {
+        "name": "API_GETWAITINGTIME",
+        "comment": "김포,제주 공항 소요시간 정보",
+        "columns": [
+          {
+            "name": "IATA_APCD",
+            "comment": "공항코드",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 66.58740234375,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "8596af34-2798-4453-a0ba-8b8f8018c184"
+          },
+          {
+            "name": "OPR_STS_CD",
+            "comment": "운영상태 코드",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.10546875,
+              "widthComment": 84.5703125,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "21b1e85c-a5f5-4f71-abd1-595dc2fc5bb8"
+          },
+          {
+            "name": "PRC_HR",
+            "comment": "조회 기준 시간",
+            "dataType": "VARCHAR2(10)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 89.140625,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "16fe98ee-533c-485a-9c34-5efb7ac3b594"
+          },
+          {
+            "name": "STY_TCT_AVG_ALL",
+            "comment": "전체 구간 소요시간 평균",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 107.49169921875,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6e872481-01a2-44b4-bd33-3f9c80c5d513"
+          },
+          {
+            "name": "STY_TCT_AVG_A",
+            "comment": "탑승권자동발권-수하물위탁-신분확인",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.01220703125,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8e895682-36ed-48d0-9e77-a4433fc6c4d3"
+          },
+          {
+            "name": "STY_TCT_AVG_B",
+            "comment": "신분확인-보안검색-탑승시간",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 94.041015625,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8d6ccfd9-d916-47e5-a0d0-2fa7f29d7df1"
+          },
+          {
+            "name": "STY_TCT_AVG_C",
+            "comment": "보안검색-탑승시간",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 94.70751953125,
+              "widthComment": 111.33203125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a4d66847-ddc8-406c-b0f4-ec0c9f8c4403"
+          },
+          {
+            "name": "STY_TCT_AVG_D",
+            "comment": "탑승시간-출발",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.7802734375,
+              "widthComment": 85.33203125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "d3021dda-0f00-4c67-8e2e-a7366d66b484"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 67.7697,
+          "top": 1086.8916,
+          "zIndex": 13,
+          "widthName": 132.32373046875,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "83783d4a-3ac6-430f-843c-c9a2d47f67cb"
+      },
+      {
+        "name": "API_PARKINGINFO",
+        "comment": "전국공항 실시간 주차정보 API",
+        "columns": [
+          {
+            "name": "PARAKINGAIRPORTCODENAME",
+            "comment": "주차장명",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 186.29150390625,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "4baea2df-ff1f-4b13-8045-7f6ff3a08d45"
+          },
+          {
+            "name": "PARKINGFULLSPACE",
+            "comment": "전체 주차면수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 119.90771484375,
+              "widthComment": 84.5703125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "daa41710-c2ec-4417-af29-95e3a190137c"
+          },
+          {
+            "name": "PARKINGLINCNT",
+            "comment": "입고수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 99.90625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1304763a-7d74-4c86-b78a-1eafc886401e"
+          },
+          {
+            "name": "PARKINGOUTCNT",
+            "comment": "출차",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 105.7080078125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ee24b944-6d9b-4478-9ff0-1b8cf0fb5346"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 607.4086,
+          "top": 1595.8094,
+          "zIndex": 17,
+          "widthName": 110.087890625,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "99ba5c98-1c36-46ba-beac-0843d3e7d922"
+      },
+      {
+        "name": "API_PARKINGHONINFO",
+        "comment": "(김포,제주)전국공항 주차장 혼잡도 API",
+        "columns": [
+          {
+            "name": "PARAKINGAIRPORTCODENAME",
+            "comment": "주차장명",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 186.29150390625,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "a2e8f26d-0292-47e5-8f1d-b89a1a9a7d86"
+          },
+          {
+            "name": "PARKINGFULLSPACE",
+            "comment": "전체 주차면수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 119.90771484375,
+              "widthComment": 84.5703125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ff9bc40a-e86f-49a6-b628-d31060aa3f12"
+          },
+          {
+            "name": "PARKINGLINCNT",
+            "comment": "입고수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 99.90625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "86d46720-508f-4b83-b41f-08da0e8786b6"
+          },
+          {
+            "name": "PARKINGOUTCNT",
+            "comment": "출차",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 105.7080078125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "de412aea-4722-4fe4-b62d-0e557ec55a10"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1220.964,
+          "top": 1609.7103,
+          "zIndex": 22,
+          "widthName": 139.50927734375,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "2a1ab8eb-c483-4400-9879-7ef84986ee18"
+      },
+      {
+        "name": "API_INCHEONPARKINGINFO",
+        "comment": "인천국제공항주차정보API",
+        "columns": [
+          {
+            "name": "PARAKINGAIRPORTCODENAME",
+            "comment": "주차장명",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 186.29150390625,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "9b2762f2-e77c-4626-88c6-54f8ea59d0bb"
+          },
+          {
+            "name": "PARKINGFULLSPACE",
+            "comment": "전체 주차면수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 119.90771484375,
+              "widthComment": 84.5703125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "88425bca-0447-45de-9078-46c9bafdee99"
+          },
+          {
+            "name": "PARKINGLINCNT",
+            "comment": "입고수",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 99.90625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7b1883c5-bfae-422d-8559-50a55f9f6cbd"
+          },
+          {
+            "name": "PARKINGOUTCNT",
+            "comment": "출차",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 105.7080078125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ded63944-8ae8-45dd-b81e-8339c8032810"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 24.8249,
+          "top": 1570.8266,
+          "zIndex": 14,
+          "widthName": 167.9404296875,
+          "widthComment": 120
+        },
+        "visible": true,
+        "id": "8219d31a-ef72-41a9-aa0a-00549f1a76cb"
+      },
+      {
+        "name": "API_FLIGHT",
+        "comment": "항공기 정보",
+        "columns": [
+          {
+            "name": "FLY_NO",
+            "comment": "항공기정보번호",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 93,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "ff386471-c984-42b8-8026-0513af35a09c"
+          },
+          {
+            "name": "AIRFLN ",
+            "comment": "항공편명",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "5c0c6470-9da0-460c-b6aa-be2c57423713"
+          },
+          {
+            "name": "AIRLINEKOREAN ",
+            "comment": "항공편이름",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 103.3212890625,
+              "widthComment": 67,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "84f853a8-fa8c-4099-ba8e-dc3ef4875f3d"
+          },
+          {
+            "name": "BOARDINGKOR ",
+            "comment": "출발공항",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 97.4560546875,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "268070d4-4308-475a-91ad-11602f2900cd"
+          },
+          {
+            "name": "ARRIVEDKOR ",
+            "comment": "도착공항",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 83.82763671875,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "2c4cadce-d7f4-4fd9-bba4-152d22151da1"
+          },
+          {
+            "name": "STD ",
+            "comment": "출발시간",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "a87b50a3-877e-4fbd-8159-f099428cab2e"
+          },
+          {
+            "name": "ETD ",
+            "comment": "도착시간",
+            "dataType": "VARCHAR2(20)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 89.29296875,
+              "widthDefault": 60
+            },
+            "id": "2b23d59d-300e-4c26-a32f-d181fec9f383"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1340.5423,
+          "top": 1769.4999,
+          "zIndex": 21,
+          "widthName": 68.73291015625,
+          "widthComment": 71.5703125
+        },
+        "visible": true,
+        "id": "b3e0e5f3-f7a9-40bc-99c9-7a4a96afd580"
+      },
+      {
+        "name": "PAYMENTINFO",
+        "comment": "결제정보",
+        "columns": [
+          {
+            "name": "PAYMENTNO",
+            "comment": "결제번호",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 78.6796875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "99a2155a-bd63-4ab9-bf83-0f15497ab321"
+          },
+          {
+            "name": "PG",
+            "comment": "PG사 구분코드",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 88.04248046875,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "d7c44551-1754-48ec-8f2a-56fb3658a476"
+          },
+          {
+            "name": "PAYMETHOD",
+            "comment": "결제수단 구분코드",
+            "dataType": "VARCHAR2(100)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.55615234375,
+              "widthComment": 110.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "ef4121f0-9527-4c43-9ea5-ecd476a37b33"
+          },
+          {
+            "name": "MERCHANTUID",
+            "comment": "가맹점 주문번호",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 93.45703125,
+              "widthComment": 97.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "c571e030-1d20-4af8-8a0b-f35ce839daaa"
+          },
+          {
+            "name": "NAME",
+            "comment": "결제대상 제품명",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 97.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "549473e9-dba8-4d2c-91f5-399a8cdd71e0"
+          },
+          {
+            "name": "AMOUNT",
+            "comment": "결제금액",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "d267ab5d-4265-4dac-b2f4-57372356235e"
+          },
+          {
+            "name": "BUYEREMAIL",
+            "comment": "주문자 이메일",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.64501953125,
+              "widthComment": 84.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "ead97bb6-1c19-4364-a978-cb7696ed844a"
+          },
+          {
+            "name": "BUYERNAME",
+            "comment": "주문자명",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.841796875,
+              "widthComment": 60,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "173eef3a-f12f-4ac9-adb9-5ab946990d0e"
+          },
+          {
+            "name": "BUYERTEL",
+            "comment": "주문자 연락처",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60.2333984375,
+              "widthComment": 84.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "48f150d6-5827-4ca1-aa31-cad5ba589e81"
+          },
+          {
+            "name": "BUYERADDR",
+            "comment": "주문자 주소",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 75.82958984375,
+              "widthComment": 71.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "9144da88-03bd-4756-8d0e-cc6f99a2b5fd"
+          },
+          {
+            "name": "BUYERPOSTCODE",
+            "comment": "주문자 우편번호",
+            "dataType": "VARCHAR2(200)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 105.7080078125,
+              "widthComment": 97.5703125,
+              "widthDataType": 96.453125,
+              "widthDefault": 60
+            },
+            "id": "25582dde-3481-4971-896b-67bcacd9126b"
+          },
+          {
+            "name": "ONO",
+            "comment": "주문번호(SEQ)",
+            "dataType": "NUMBER",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 85.75732421875,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "d7a29ba8-45cc-45c2-864b-a8681e0025c2"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1259.389,
+          "top": 1241.4164,
+          "zIndex": 25,
+          "widthName": 88.6708984375,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "9a43fdca-45ed-426d-b3e5-3041cea05806"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 383.4385285714286,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "628c0120-cb9b-46a0-8c15-69a8abd8a880",
+          "columnIds": [
+            "ee7a6a7f-162f-40be-a6d0-bddf2716661a"
+          ],
+          "x": 684.492,
+          "y": 320.779,
+          "direction": "left"
+        },
+        "constraintName": "fk_membertbl_to_boardtbl",
+        "visible": true,
+        "id": "3c84264f-cfa0-43f4-98a0-bdcbdccdb183"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 492.0813857142858,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "bef42623-410e-43ce-811a-39dbaa32ace1",
+          "columnIds": [
+            "32fa6ca0-445b-4c9f-b322-029059ac119b"
+          ],
+          "x": 1282.8253,
+          "y": 396.9062,
+          "direction": "left"
+        },
+        "constraintName": "fk_membertbl_to_reply",
+        "visible": true,
+        "id": "8d51a835-23f5-4564-8548-b21f0392e703"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "628c0120-cb9b-46a0-8c15-69a8abd8a880",
+          "columnIds": [
+            "e04f5539-8497-407a-9d24-22772c4e30c5"
+          ],
+          "x": 1142.00518359375,
+          "y": 320.779,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "a7f5b018-c791-4f59-ad04-1554d3283df2",
+          "columnIds": [
+            "2fe40764-755d-419b-8464-b4d2f4090b4b"
+          ],
+          "x": 1232.3642,
+          "y": 137.0722,
+          "direction": "left"
+        },
+        "constraintName": "fk_boardtbl_to_boardimagetbl",
+        "visible": true,
+        "id": "5d35f0c1-4c50-42a5-b629-0ac7efd35119"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "628c0120-cb9b-46a0-8c15-69a8abd8a880",
+          "columnIds": [
+            "e04f5539-8497-407a-9d24-22772c4e30c5"
+          ],
+          "x": 913.248591796875,
+          "y": 224.779,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "b82924d1-fcb5-460f-9729-fed1fa70dbd7",
+          "columnIds": [
+            "8ad9586d-b6ad-4618-97f8-b52138a4c6d8"
+          ],
+          "x": 823.292324609375,
+          "y": 161.5,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_boardtbl_to_like",
+        "visible": true,
+        "id": "b224b4d2-6c2d-4fa7-bc05-1e3b7fdaaf6c"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 455.86710000000005,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "b82924d1-fcb5-460f-9729-fed1fa70dbd7",
+          "columnIds": [
+            "5e7abdc4-0b63-43d4-b09b-456d8c40e205"
+          ],
+          "x": 612.1871,
+          "y": 96.25,
+          "direction": "left"
+        },
+        "constraintName": "fk_membertbl_to_like",
+        "visible": true,
+        "id": "627d9bb8-0a24-4940-827c-f4bf4bf8a774"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "628c0120-cb9b-46a0-8c15-69a8abd8a880",
+          "columnIds": [
+            "e04f5539-8497-407a-9d24-22772c4e30c5"
+          ],
+          "x": 1142.00518359375,
+          "y": 256.779,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "bef42623-410e-43ce-811a-39dbaa32ace1",
+          "columnIds": [
+            "203305fd-8981-479a-a033-c8d196805cca"
+          ],
+          "x": 1282.8253,
+          "y": 311.1562,
+          "direction": "left"
+        },
+        "constraintName": "fk_boardtbl_to_reply",
+        "visible": true,
+        "id": "55de9366-9f9a-4a74-ae19-4fbb5e7d1d25"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 248.225505859375,
+          "y": 582.6170999999999,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "595a8459-07e2-4fbc-8416-4c22a96b58bb",
+          "columnIds": [
+            "433c5f23-c8aa-4cbf-b994-1f643e9d0885"
+          ],
+          "x": 299.4285453125,
+          "y": 655.5342,
+          "direction": "top"
+        },
+        "constraintName": "fk_membertbl_to_itemibl",
+        "visible": true,
+        "id": "bc4663df-678a-4af7-8b8b-33f20516d534"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "595a8459-07e2-4fbc-8416-4c22a96b58bb",
+          "columnIds": [
+            "d55e02d1-d87d-44ac-b6c0-0a0972e8fcc2"
+          ],
+          "x": 540.659990625,
+          "y": 830.2842,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "24217324-3c62-4d6c-8b05-43e8d414d5c8",
+          "columnIds": [
+            "266073e4-fc2a-4cae-997f-ae71837bf288"
+          ],
+          "x": 1479.6389,
+          "y": 821.8217,
+          "direction": "left"
+        },
+        "constraintName": "fk_itemtbl_to_carttbl",
+        "visible": true,
+        "id": "6ee03e0a-466a-4410-ae60-12f53ce45b79"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Ring",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 564.5099571428572,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "24217324-3c62-4d6c-8b05-43e8d414d5c8",
+          "columnIds": [
+            "678c376a-2efd-47f4-895a-eb2187ebd107"
+          ],
+          "x": 1479.6389,
+          "y": 917.8217,
+          "direction": "left"
+        },
+        "constraintName": "fk_membertbl_to_carttbl",
+        "visible": true,
+        "id": "72a6fa8b-107a-45dc-a47a-b1ad6de7fc4b"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "628c0120-cb9b-46a0-8c15-69a8abd8a880",
+          "columnIds": [
+            "e04f5539-8497-407a-9d24-22772c4e30c5"
+          ],
+          "x": 1142.00518359375,
+          "y": 384.779,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "1e0dd1ed-405e-4350-a804-7595ddef05db",
+          "columnIds": [
+            "acb76fee-0b7b-4b2f-b44c-e9bc19c3bf31"
+          ],
+          "x": 1432.4662,
+          "y": 521.9159,
+          "direction": "left"
+        },
+        "constraintName": "fk_board_to_hashtagmapping",
+        "visible": true,
+        "id": "4478bb7b-6771-49f2-aecf-5829aef28fc6"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "cb261bd2-0ac6-493f-a623-ab375adeb9a3",
+          "columnIds": [
+            "5ae7b97b-bb1a-4e99-8e2a-0c22edb6f11e"
+          ],
+          "x": 1562.77746875,
+          "y": 680.094,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "1e0dd1ed-405e-4350-a804-7595ddef05db",
+          "columnIds": [
+            "6f06c20d-cb16-4537-b28c-8b4771424855"
+          ],
+          "x": 1625.344862109375,
+          "y": 587.1659,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_hashtag_to_hashtagmapping",
+        "visible": true,
+        "id": "4b63ef74-f911-404f-aba7-30147c155bc7"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "264fc938-17fe-4fb7-8b61-4faf4d02e7aa",
+          "columnIds": [
+            "e6c38947-49ac-4cf3-9d94-01ce455d4a2c"
+          ],
+          "x": 330.807241015625,
+          "y": 959.0002,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "595a8459-07e2-4fbc-8416-4c22a96b58bb",
+          "columnIds": [
+            "584f8651-44dd-4ca2-8f90-d51c1bad5e82"
+          ],
+          "x": 299.4285453125,
+          "y": 888.5342,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_itemcate_to_item",
+        "visible": true,
+        "id": "7342b60d-b403-4bdc-94aa-00893581d5ea"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "595a8459-07e2-4fbc-8416-4c22a96b58bb",
+          "columnIds": [
+            "d55e02d1-d87d-44ac-b6c0-0a0972e8fcc2"
+          ],
+          "x": 540.659990625,
+          "y": 713.7842,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "7997f293-0fc2-4f5c-a931-37aa344d57c5",
+          "columnIds": [
+            "27707cb5-a553-469c-a1a2-16f6ab2587d2"
+          ],
+          "x": 633,
+          "y": 1006.223,
+          "direction": "left"
+        },
+        "constraintName": "fk_itemibl_to_itemimgtbl",
+        "visible": true,
+        "id": "7b1dea0d-8903-4b24-9385-2c4b46d1720f"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 248.225505859375,
+          "y": 329.1171,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "8d8d837c-465e-44b1-b1cf-c8897cd59c8e",
+          "columnIds": [
+            "2b59de69-c377-4a09-bf50-2878b58f0ce6"
+          ],
+          "x": 283.398206640625,
+          "y": 259.8951,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_member_to_memberimg",
+        "visible": true,
+        "id": "fa6d8d41-d528-4c92-8f8a-a208d24dd8d5"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 419.6528142857143,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "9fe0d3f1-7cf5-4ece-9e8e-0cba87fe8d2f",
+          "columnIds": [
+            "5b357371-5a3b-4328-8c48-1e29030d2970"
+          ],
+          "x": 694.8673,
+          "y": 737.234,
+          "direction": "left"
+        },
+        "constraintName": "fk_member_to_address",
+        "visible": true,
+        "id": "8b16fab4-92ad-4ed0-860d-cf9f0243ad6e"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 347.2242428571429,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "e7a9bef2-6749-4c2a-89d5-ec9906dde00b",
+          "columnIds": [
+            "caf2eda7-dd87-4f41-9f56-2aeed6f357c1"
+          ],
+          "x": 687.8,
+          "y": 518.7,
+          "direction": "left"
+        },
+        "constraintName": "fk_member_to_token",
+        "visible": true,
+        "id": "2e2f48f6-c0dd-4bb6-9214-095baf03c2e8"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "8f950336-933d-4f2f-910e-349e07fc2db0",
+          "columnIds": [
+            "0b6fb10a-d267-491c-8d02-5686d30aaf97"
+          ],
+          "x": 483.44401171875,
+          "y": 528.2956714285715,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "dcdacb85-c35a-4825-807a-4493fdd598da",
+          "columnIds": [
+            "83ceb6ef-0709-43b4-bbfe-29d6f76b8c77"
+          ],
+          "x": 1185.1765,
+          "y": 1064.9328,
+          "direction": "left"
+        },
+        "constraintName": "fk_membertbl_to_ordertbl",
+        "visible": true,
+        "id": "4b205da1-822f-49fe-ab51-960fbae3e42f"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "dcdacb85-c35a-4825-807a-4493fdd598da",
+          "columnIds": [
+            "36916eb5-6827-45a1-9a45-5016e0d2e9ac"
+          ],
+          "x": 1631.2399765625,
+          "y": 1064.9328,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "24217324-3c62-4d6c-8b05-43e8d414d5c8",
+          "columnIds": [
+            "2c9188ab-3ba1-4337-a974-44ac71e37073"
+          ],
+          "x": 1714.588362890625,
+          "y": 965.8217,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_orders_to_cart",
+        "visible": true,
+        "id": "698953de-4a17-4365-ad10-9fd4c1c7091a"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "be38e5e6-a6a4-4841-bbfa-f0a1e63c3236",
+          "columnIds": [
+            "a920d923-25da-4408-9cb4-2e2e883ead74"
+          ],
+          "x": 644.567,
+          "y": 1881.1888,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "16db468b-59b0-43d7-ad3c-0cf34585c644",
+          "columnIds": [
+            "01bcdd67-2d71-41e0-8a76-cc9c54fcc138"
+          ],
+          "x": 544.0000421875,
+          "y": 1866.7227,
+          "direction": "right"
+        },
+        "constraintName": "fk_api_airportstore_to_api_airportstoreimg",
+        "visible": true,
+        "id": "e732cf40-1426-4829-907d-ccf02637321d"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "dcdacb85-c35a-4825-807a-4493fdd598da",
+          "columnIds": [
+            "36916eb5-6827-45a1-9a45-5016e0d2e9ac"
+          ],
+          "x": 1408.20823828125,
+          "y": 1150.6828,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "9a43fdca-45ed-426d-b3e5-3041cea05806",
+          "columnIds": [
+            "d7a29ba8-45cc-45c2-864b-a8681e0025c2"
+          ],
+          "x": 1499.25472265625,
+          "y": 1241.4164,
+          "direction": "top"
+        },
+        "constraintName": "fk_orders_to_paymentinfo",
+        "visible": true,
+        "id": "f3307032-4bbe-4108-be50-c63842aa2dc5"
+      }
+    ]
+  }
+}

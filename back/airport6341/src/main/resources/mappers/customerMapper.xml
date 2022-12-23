@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.CustomerMapper">
+     
+     <!-- <update id="deleteMember" parameterType="com.example.entity.Member">
+          UPDATE MEMBER SET BLOCK=#{block}, ROLE=#{role}, BIRTH=#{birth},
+          NICKNAME=#{nickname}, PHONE=#{phone}, REGDATE=#{regdate}, USERPW=#{userpw}
+          WHERE USERID=#{userid}
+     </update> -->
+
+
+     <update id="updatePassword" parameterType="com.example.entity.Member">
+          UPDATE MEMBER SET USERPW=#{userpw} WHERE USERID=#{userid}
+     </update>
+
+     <update id="updateMember" parameterType="com.example.entity.Member">
+          UPDATE MEMBER SET BIRTH=#{birth}, NICKNAME=#{nickname}, PHONE=#{phone}
+          WHERE USERID=#{userid}
+     </update>
+
+     <select id="nicknamecheck" parameterType="string" resultType="int">
+          SELECT COUNT(*) FROM MEMBER WHERE NICKNAME = #{nickname}
+     </select>
+
+     <!-- <select id="myboardlist" parameterType="map" resultType="com.example.entity.Board"> -->
+     <select id="myboardlist" parameterType="map" resultType="com.example.dto.BoardSelectOneDto">
+          SELECT * FROM( SELECT B.*, ROW_NUMBER() OVER (ORDER BY BNO DESC) ROWN FROM BOARD B WHERE USERID=#{userid}) WHERE ROWN BETWEEN #{start} AND #{start}+9
+     </select>
+
+     <select id="myboardlistcount" parameterType="String" resultType="Long">
+          <!-- SELECT COUNT(*) FROM (SELECT * FROM BOARD B WHERE USERID='customer2') -->
+          SELECT COUNT(*) FROM (SELECT * FROM BOARD B WHERE USERID=#{userid})
+     </select>
+
+     <select id="myboardreplylist" parameterType="map" resultType="com.example.entity.Reply">
+          SELECT * FROM( SELECT B.*, ROW_NUMBER() OVER (ORDER BY REGDATE DESC) ROWN FROM REPLY B WHERE USERID=#{userid}) WHERE ROWN BETWEEN #{start} AND #{start}+9
+     </select>
+     
+     <select id="boardreplyone" parameterType="map" resultType="com.example.entity.Reply">
+          SELECT * FROM REPLY WHERE USERID=#{userid} AND BNO=#{bno}
+     </select>
+
+     <select id="myboardreplycount" parameterType="String" resultType="Long">
+     <!-- SELECT COUNT(*) FROM (SELECT * FROM REPLY WHERE USERID='customer2') -->
+          SELECT COUNT(*) FROM (SELECT * FROM REPLY WHERE USERID=#{userid})
+          </select>
+
+
+     <update id="updateoneReply" parameterType="com.example.entity.Reply">
+          UPDATE REPLY SET CONTENT=#{content} WHERE BNO=#{board.bno} AND RNO=#{rno}
+     </update>
+
+     <delete id="deleteoneReply" parameterType="com.example.entity.Reply">
+          DELETE REPLY WHERE RNO=#{rno} 
+     </delete>
+
+     <!-- <select id="myboardlikelist" parameterType="map" resultType="com.example.entity.Likes"> -->
+     <select id="myboardlikelist" parameterType="map" resultType="com.example.dto.LikeDTO">
+          SELECT * FROM( SELECT B.*, ROW_NUMBER() OVER (ORDER BY LNO DESC) ROWN FROM LIKES B WHERE USERID=#{userid}) WHERE ROWN BETWEEN #{start} AND #{start}+9
+     </select>
+
+     <select id="myboardlikecount" parameterType="String" resultType="Long">
+          SELECT COUNT(*) FROM (SELECT * FROM LIKES WHERE USERID=#{userid})
+     </select>
+
+     <select id="myboardone" parameterType="map" resultType="com.example.entity.Board">
+          SELECT * FROM( SELECT B.*, ROW_NUMBER() OVER (ORDER BY LNO ASC) ROWN FROM BOARD B WHERE BNO=#{bno}) WHERE ROWN BETWEEN #{start} AND #{start}+9
+     </select>
+          <!-- SELECT B.* FROM 
+          (SELECT B.*, ROW_NUMBER() OVER (ORDER BY NO DESC) ROWN FROM BOARDTBL B WHERE B.TITLE LIKE '%' || #{text} || '%') B WHERE ROWN BETWEEN #{start} AND #{start}+9 -->
+
+     <!-- <update id="updateMember" parameterType="com.example.dto.MemberDTO">
+          UPDATE MEMBERTBL SET AGE=#{age}, PHONE=#{phone}, GENDER=#{gender}
+          WHERE USERID=#{userid}
+     </update>
+
+
+   <insert id="joinMember" parameterType="com.example.dto.MemberDTO">
+        INSERT INTO MEMBERTBL(USERID, USERPW, AGE, PHONE, GENDER, REGDATE, ROLE)
+        VALUES(#{userid}, #{userpw}, #{age}, #{phone}, #{gender}, CURRENT_DATE, #{role})
+   </insert> -->
+
+     <update id= "deleteMember" parameterType="com.example.entity.Member">
+          UPDATE MEMBER SET 
+            USERPW=NULL, AIRPORTNAME=NULL, BIRTH=NULL,NICKNAME=NULL, PHONE=NULL, REGDATE=CURRENT_DATE, ROLE=NULL, BLOCK=1 WHERE USERID=#{userid}
+     </update>
+
+   <select id="selectMemberOne" parameterType="String" 
+        resultType="com.example.entity.Member">
+        SELECT * FROM MEMBER WHERE USERID=#{userid}
+   </select>
+
+     <update id="updateAirportname" parameterType="map">
+          UPDATE MEMBER SET
+               AIRPORTNAME=#{airportname} WHERE USERID=#{userid}
+     </update>
+
+     <update id="updatenullAirportname" parameterType="map">
+          UPDATE MEMBER SET
+               AIRPORTNAME=GMP WHERE USERID=#{userid}
+     </update>
+
+     <select id="selectMemberbirthandphone" parameterType="String" resultType="com.example.entity.Member">
+          SELECT M.USERID,M.BIRTH,M.PHONE FROM MEMBER M WHERE USERID=#{userid}
+     </select>
+
+     <select id="selectPasswordMemberOne" parameterType="map" 
+        resultType="com.example.entity.Member">
+        SELECT * FROM MEMBER WHERE USERID=#{userid} AND BIRTH=#{birth} AND PHONE=#{phone}
+   </select>
+
+    <update id="updateMemberPassword" parameterType="com.example.entity.Member">
+          UPDATE MEMBER SET
+               USERPW=#{userpw} WHERE USERID=#{userid}
+     </update>
+     
+      <select id="selectMemberidbirthandphone" parameterType="map" resultType="com.example.entity.Member" >
+          SELECT M.USERID FROM MEMBER M WHERE BIRTH=#{birth} AND PHONE=#{phone}
+     </select>
+</mapper>

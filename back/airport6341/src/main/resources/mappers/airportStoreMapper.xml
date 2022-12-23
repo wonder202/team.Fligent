@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AirportStoreMapper">
+
+
+    <select id="selectairportCode" parameterType="map" resultType="com.example.dto.AirportStoreDTO">
+        SELECT T2.* FROM (SELECT ROW_NUMBER() OVER (ORDER BY T1.AIRPORTSTORENO ASC) ROWN,T1.* FROM AIRPORTSTOREINFO T1  WHERE AIRPORTCODE=#{airportCode}) T2 WHERE T2.ROWN BETWEEN #{start} AND #{start}+8
+    </select>
+
+    <select id="selectairportCodeCount" parameterType="map" resultType="Long">
+       SELECT COUNT(*) FROM (SELECT T2.* FROM (SELECT ROW_NUMBER() OVER (ORDER BY T1.AIRPORTSTORENO ASC) ROWN,T1.* FROM AIRPORTSTOREINFO T1  WHERE AIRPORTCODE=#{airportCode}) T2 WHERE T2.ROWN BETWEEN #{start} AND #{start}+8)
+    </select>
+
+    <select id="selectTypeOfBusiness" parameterType="map" resultType="com.example.dto.AirportStoreDTO">
+    SELECT T3. * FROM (SELECT ROW_NUMBER() OVER (ORDER BY T2.AIRPORTSTORENO ASC) ROWN, T2.* FROM (SELECT T1.* FROM (SELECT * FROM AIRPORTSTOREINFO WHERE AIRPORTCODE=#{airportCode}) T1 WHERE TYPEOFBUSINESS=#{typeOfBusiness}) T2) T3 WHERE T3.ROWN BETWEEN #{start} AND #{start}+8 
+    </select>
+
+    <select id="selectTypeofBusinessCount" parameterType="map" resultType="Long">
+    SELECT COUNT(*) FROM (
+    SELECT T3. * FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY T2.AIRPORTSTORENO ASC) ROWN, T2.* FROM (
+            SELECT T1.* FROM (
+                SELECT * FROM AIRPORTSTOREINFO WHERE AIRPORTCODE=#{airportCode}) T1 WHERE TYPEOFBUSINESS=#{typeOfBusiness}) 
+                T2) 
+                T3 WHERE T3.ROWN BETWEEN #{start} AND #{start}+8)
+    </select>
+
+
+    <!-- 김포,김해,제주 공항 상업시설 이미지 첨부 -->
+    <insert id="insertbatchAirportImage" parameterType="List">
+        <!-- 시퀀스 있음. -->
+                <foreach collection='list' item='tmp' separator='; '>
+                   INSERT INTO AIRPORTSTOREIMG(SIMAGENO, AIRPORTSTORENO, IMAGENAME, IMAGESIZE,
+                    IMAGETYPE, IMAGEDATA ,REGDATE) 
+                    VALUES (SEQ_AIRPORTSTOREIMG_NO.NEXTVAL,#{tmp.airportstoreno},#{tmp.imagename},#{tmp.imagesize},#{tmp.imagetype},#{tmp.imagedata , jdbcType=BLOB},CURRENT_DATE )
+                </foreach> 
+    </insert> 
+
+    <!-- 인천 공항 상업시설 이미지 첨부 -->
+    <insert id="insertBatchIcnAirportimage" parameterType="List">
+        <!-- 시퀀스 있음. -->
+                <foreach collection='list' item='tmp' separator='; '>
+                   INSERT INTO AIRPORTSTOREIMG(SIMAGENO, AIRPORTSTORENO, IMAGENAME, IMAGESIZE,
+                    IMAGETYPE, IMAGEDATA ,REGDATE) 
+                    VALUES (SEQ_AIRPORTSTOREIMG_NO.NEXTVAL,#{tmp.airportstoreno},#{tmp.imagename},#{tmp.imagesize},#{tmp.imagetype},#{tmp.imagedata , jdbcType=BLOB},CURRENT_DATE )
+                </foreach> 
+    </insert> 
+
+
+    <select id="airportStoreImageNoSelect" parameterType="Long" resultType="Long">
+        SELECT SIMAGENO FROM 
+                (SELECT SI.SIMAGENO 
+                FROM AIRPORTSTOREIMG SI WHERE AIRPORTSTORENO = #{airportstoreno} ORDER BY SIMAGENO ASC) WHERE ROWNUM = 1;
+    </select>
+
+    <resultMap id="retMap1" type="com.example.dto.AirportStoreImageDTO">
+        <result property="imagedata" column="IMAGEDATA" jdbcType="BLOB" javaType="[B"   />
+    </resultMap>
+    <select id="selectAirportStoreimage" parameterType="Long" resultMap="retMap1">
+        SELECT S.* FROM AIRPORTSTOREIMG S WHERE S.SIMAGENO = #{simageno} 
+    </select>
+
+    <select id="searchHashtagAirport" parameterType="map" resultType="com.example.dto.BoardMainDTO">
+        SELECT * FROM BOARDMAINVIEW WHERE HNO=#{hno}
+    </select>
+    <select id="searchHashtagAirportCount" parameterType="map" resultType="Long">
+        SELECT COUNT(*) FROM (SELECT * FROM BOARDMAINVIEW WHERE HNO=#{hno})
+    </select>
+</mapper>

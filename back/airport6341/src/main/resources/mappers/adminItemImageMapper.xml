@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdminItemImageMapper">
+
+   <delete id="deleteImage" parameterType="map">
+        DELETE FROM ITEMIMG WHERE INO=#{ino} AND IIMAGENO=#{iimageno}
+    </delete>
+
+    <insert id="insertItembatchImage" parameterType="list">
+                <foreach collection='list' item='tmp' separator='; '>
+                   INSERT INTO ITEMIMG(IIMAGENO, iNO, IMAGENAME, IMAGESIZE,
+                    IMAGETYPE, IMAGEDATA , REGDATE) 
+                    VALUES (SEQ_ITEMIMG_NO.NEXTVAL,#{tmp.item.ino},#{tmp.imagename},#{tmp.imagesize},#{tmp.imagetype},#{tmp.imagedata , jdbcType=BLOB},to_date(sysdate,'yyyy-mm-dd hh24:mi') )
+                </foreach> 
+    </insert> 
+      
+
+</mapper>

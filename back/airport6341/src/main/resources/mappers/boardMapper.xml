@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BoardMapper">
+
+        <!-- 메인페이지 게시글 조회 해시태그 + 제목+ 내용 + 최신순12개 가져오기 -->
+
+        <!-- 해시태그 선택하지 않은 경우 쿼리문 -->
+        <!-- SELECT  R.LIKECOUNT, RR.REPLYCOUNT, B.BNO, B.CONTENT, B.HIT, TO_CHAR(B.REGDATE, 'YYYY-MM-DD') REGDATE, B.TITLE, B.USERID, ROW_NUMBER() OVER (ORDER BY RR.REPLYCOUNT DESC, REGDATE DESC) ROWN FROM
+                (SELECT DISTINCT BNO 
+        	FROM HASHTAGMAPPING HM 
+        	ORDER BY BNO DESC
+        ) BM
+        INNER JOIN BOARD B ON BM.BNO = B.BNO
+        INNER JOIN (SELECT BNO, COUNT(USERID) LIKECOUNT FROM LIKES GROUP BY BNO) R ON R.BNO = B.BNO
+        INNER JOIN (SELECT BNO, COUNT(RNO) REPLYCOUNT FROM REPLY GROUP BY BNO) RR ON RR.BNO = B.BNO
+        WHERE (B.TITLE LIKE '%' || 'T' || '%' OR B.CONTENT LIKE '%' || 'C' || '%') -->
+
+        <!-- 해시태그 선택한 경우 쿼리문 -->
+        <!-- SELECT  R.LIKECOUNT, RR.REPLYCOUNT, B.BNO, B.CONTENT, B.HIT, TO_CHAR(B.REGDATE, 'YYYY-MM-DD') REGDATE , B.TITLE, B.USERID, ROW_NUMBER() OVER (ORDER BY RR.REPLYCOUNT DESC, REGDATE DESC) ROWN FROM
+                (SELECT DISTINCT BNO 
+        	FROM HASHTAGMAPPING HM 
+                WHERE HM.HNO IN (1,4) 
+                ORDER BY BNO DESC
+        ) BM
+        INNER JOIN BOARD B ON BM.BNO = B.BNO
+        INNER JOIN (SELECT BNO, COUNT(USERID) LIKECOUNT FROM LIKES GROUP BY BNO) R ON R.BNO = B.BNO
+        INNER JOIN (SELECT BNO, COUNT(RNO) REPLYCOUNT FROM REPLY GROUP BY BNO) RR ON RR.BNO = B.BNO
+        WHERE (B.TITLE LIKE '%' || 'T' || '%' OR B.CONTENT LIKE '%' || 'C' || '%') -->
+
+        <select id="boardSelectMain" parameterType="map" resultType="com.example.dto.BoardMainDTO">
+        SELECT *  FROM 
+        (SELECT M.NICKNAME, DECODE(R.LIKECOUNT, NULL, 0, R.LIKECOUNT) AS LIKECOUNT, DECODE(RR.REPLYCOUNT, NULL, 0, RR.REPLYCOUNT) AS REPLYCOUNT, B.BNO, B.CONTENT, B.HIT, TO_CHAR(B.REGDATE + INTERVAL '9' HOUR, 'yyyy-mm-dd') REGDATE , B.TITLE, B.USERID, ROW_NUMBER() OVER (ORDER BY ${type} B.REGDATE DESC) ROWN FROM
+                (SELECT DISTINCT BNO
+                FROM HASHTAGMAPPING HM
+                        <if test="hno != null"> 
+                                WHERE HM.HNO IN (
+                                <foreach collection="hno" item="tmp" separator = ", ">
+                                    #{tmp}
+                                </foreach>
+                                )
+                        </if>
+                        ORDER BY BNO DESC
+                        ) BM
+                INNER JOIN BOARD B ON BM.BNO = B.BNO
+                INNER JOIN MEMBER M ON M.USERID = B.USERID
+                LEFT OUTER JOIN (SELECT BNO, COUNT(USERID) LIKECOUNT FROM LIKES GROUP BY BNO) R ON R.BNO = B.BNO
+                LEFT OUTER JOIN (SELECT BNO, COUNT(RNO) REPLYCOUNT FROM REPLY GROUP BY BNO) RR ON RR.BNO = B.BNO
+                        WHERE (B.TITLE LIKE '%' || #{title} || '%' )
+                        <!-- WHERE (B.TITLE LIKE '%' || #{title} || '%' OR B.CONTENT LIKE '%' || #{content} || '%') -->
+        )
+        WHERE ROWN BETWEEN #{page} AND #{page}+11 ORDER BY ROWN
+        </select>
+
+        <!-- 메인페이지 이미지 URL번호(오름차순 정렬중 첫번째 번호) 가져오기 -->
+        <!-- SELECT BIMAGENO FROM (SELECT BI.BIMAGENO FROM BOARDIMG BI WHERE BNO = 13 ORDER BY BIMAGENO ASC) WHERE ROWNUM = 1; -->
+        <select id="boardImageNoSelect" parameterType="Long" resultType="Long">
+        SELECT BIMAGENO FROM 
+                (SELECT BI.BIMAGENO 
+                FROM BOARDIMG BI WHERE BNO = #{bno} ORDER BY BIMAGENO ASC) WHERE ROWNUM = 1;
+        </select>
+
+        <!-- 메인페이지 검색결과 게시물 개수(count)  -->
+        <!-- 예외처리 메인페이지 게시글 조회와 동일하게 IF문 조건 주어야 함 -->
+        <select id="boardSelectCount" parameterType="map" resultType="Long">
+        
+SELECT COUNT(*) FROM(
+        (SELECT R.LIKECOUNT, RR.REPLYCOUNT, B.BNO, B.CONTENT, B.HIT, TO_CHAR(B.REGDATE + INTERVAL '9' HOUR, 'yyyy-mm-dd') REGDATE , B.TITLE, B.USERID, ROW_NUMBER() OVER (ORDER BY ${type} B.REGDATE DESC) ROWN FROM
+                (SELECT DISTINCT BNO
+                FROM HASHTAGMAPPING HM
+                        <if test="hno != null"> 
+                                WHERE HM.HNO IN (
+                                <foreach collection="hno" item="tmp" separator = ", ">
+                                    #{tmp}
+                                </foreach>
+                                )
+                        </if>
+                        ORDER BY BNO DESC
+                        ) BM
+                INNER JOIN BOARD B ON BM.BNO = B.BNO
+                LEFT OUTER JOIN (SELECT BNO, COUNT(USERID) LIKECOUNT FROM LIKES GROUP BY BNO) R ON R.BNO = B.BNO
+                LEFT OUTER JOIN (SELECT BNO, COUNT(RNO) REPLYCOUNT FROM REPLY GROUP BY BNO) RR ON RR.BNO = B.BNO
+                        WHERE (B.TITLE LIKE '%' || #{title} || '%' )
+        ))
+
+        </select>
+
+        <!-- 좋아요순 - 인기 게시물 4개 조회 (메인페이지/게시판메인상단) -->
+        <select id="boardLikeSelect" resultType="com.example.dto.BoardTopDto">
+        SELECT B.BNO, B.TITLE, B.CONTENT, B.HIT, B.USERID, TO_CHAR(B.REGDATE, 'YYYY-MM-DD') REGDATE, M.NICKNAME, L.LCNT, R.RECNT 
+        FROM 
+                (SELECT * 
+                FROM 
+                        (SELECT BNO, COUNT(USERID) LCNT 
+                        FROM LIKES 
+                        GROUP BY BNO 
+                        ORDER BY LCNT DESC, BNO DESC) <![CDATA[ WHERE ROWNUM <= 4 ]]> 
+                        ) L
+                INNER JOIN BOARD B ON B.BNO = L.BNO
+                INNER JOIN MEMBER M ON M.USERID = B.USERID
+                INNER JOIN 
+                        (SELECT BNO, COUNT(RNO) RECNT 
+                        FROM REPLY 
+                        GROUP BY BNO) R 
+                ON R.BNO = L.BNO;
+
+        </select>
+
+        <!-- 조회수순 - 인기 게시물 4개 조회 (메인페이지/게시판메인상단) -->
+        <select id="boardHitSelect" resultType="com.example.dto.BoardTopDto">
+        SELECT LL.BNO, LL.TITLE, LL.CONTENT, LL.HIT, TO_CHAR(LL.REGDATE + INTERVAL '9' HOUR, 'yyyy-mm-dd hh24:mi') REGDATE, LL.USERID, M.NICKNAME, R.CNT, RR.RECNT FROM (
+                SELECT * FROM BOARD B ORDER BY B.HIT DESC) LL
+                INNER JOIN MEMBER M ON M.USERID = LL.USERID
+                INNER JOIN (SELECT BNO, COUNT(USERID) CNT FROM LIKES GROUP BY BNO) R ON R.BNO = LL.BNO
+                INNER JOIN (SELECT BNO, COUNT(RNO) RECNT FROM REPLY GROUP BY BNO) RR ON RR.BNO = LL.BNO
+                <![CDATA[ WHERE ROWNUM <= 4 ]]>
+        </select>
+
+        <!-- 게시글 1개 조회  -->
+        <!-- 게시글 정보 + 사용자 닉네임 + 게시글 좋아요 수 COUNT -->
+        <select id="boardSelectOne" parameterType="Long" resultType="com.example.dto.BoardSelectOneDto">
+        <!-- TO_CHAR(CURRENT_TIMESTAMP+ INTERVAL '9' HOUR, 'yyyy-mm-dd hh24:mi:ss') -->
+        SELECT BB.BNO, BB.TITLE, BB.CONTENT, BB.HIT, TO_CHAR(BB.REGDATE + INTERVAL '9' HOUR, 'yyyy-mm-dd hh24:mi') REGDATE, M.NICKNAME, BB.USERID, L.LCNT
+        FROM (SELECT * FROM BOARD B WHERE BNO = #{bno}) BB
+        LEFT OUTER JOIN MEMBER M ON BB.USERID = M.USERID
+        LEFT OUTER JOIN (SELECT BNO, COUNT(USERID) LCNT FROM LIKES GROUP BY BNO) L ON L.BNO = BB.BNO        
+        </select>
+
+        <!-- 게시글 1개 조회시 해당 게시글의 해시태그 목록 -->
+        <select id="boardSelectOneHashtag" parameterType="Long" resultType="com.example.dto.BoardSelectOneHashtagDTO">
+        SELECT HM.HNO, H.NAME FROM
+        (SELECT * FROM HASHTAGMAPPING WHERE BNO = #{bno} ORDER BY HNO ASC) HM
+        INNER JOIN HASHTAG H ON H.HNO = HM.HNO
+        </select>
+
+        <!-- 게시글 1개 조회시 게시글에 해당하는 이미지 URL 전부 -->
+        <select id="boardSelectOneImg" parameterType="Long" resultType="com.example.dto.BoardSelectOneImgDTO">
+        SELECT BI.BNO, BI.BIMAGENO 
+        FROM BOARDIMG BI 
+        WHERE BI.BNO= #{bno}
+        ORDER BY BI.BIMAGENO ASC
+        </select>
+
+        <!-- 게시글 1개 조회시 해당 게시글의 해시태그 목록 이름만 조회 -->
+        <!-- SELECT H.HNO, H.NAME FROM HASHTAGMAPPING HM
+                INNER JOIN HASHTAG H ON H.HNO = HM.HNO
+                WHERE BNO=157 -->
+        <select id="boardSelectOneHashtagName" parameterType="Long" resultType="String">
+        SELECT H.NAME FROM HASHTAGMAPPING HM
+        INNER JOIN HASHTAG H ON H.HNO = HM.HNO
+        WHERE BNO=#{bno}
+        </select>
+
+
+
+
+
+
+
+
+
+
+        <!-- ========================================= 게시글 제목 + 내용 검색 ===================================================-->
+        <!-- SELECT * FROM BOARD B WHERE B.TITLE LIKE '%' || 'T' || '%'  AND B.CONTENT LIKE '%' || 'e' || '%'; -->
+        <select id="boardSelectOne1" parameterType="map" resultType="com.example.entity.Board">
+                SELECT * FROM BOARD B WHERE B.TITLE LIKE '%' || #{title} || '%' AND B.CONTENT LIKE '%' || #{content} || '%';
+        </select>
+
+        <!-- ========================================= 해시태그 사용자 여러개 검색 ===================================================-->
+        <!-- SELECT LISTAGG(BNO, ' ,') HMLIST FROM (SELECT DISTINCT BNO FROM HASHTAGMAPPING HM WHERE HM.HNO = 11 OR HM.HNO = 3 ORDER BY BNO ASC) GROUP BY BNO -->
+        <select id="hashtagSelect" parameterType="map" resultType="com.example.entity.HashtagMapping">
+                LISTAGG(BNO, ' ,') HMLIST FROM (SELECT DISTINCT BNO FROM HASHTAGMAPPING HM WHERE
+                <foreach collection="hno" item="tmp" separator = "OR ">
+                        <!-- HM.HNO = 11 OR HM.HNO = 3 -->
+                        HM.HNO = #{tmp} 
+                </foreach>
+                ORDER BY BNO ASC) GROUP BY BNO
+        </select>
+
+
+        <!-- =========================================기본검색(해시태그) ===================================================-->
+
+        <!-- 기본 (해시태그) 다중 검색 -->
+        <select id="hashtagSearch" parameterType="map" resultType="com.example.dto.BoardViewDTO">
+                SELECT * FROM(SELECT * FROM BOARDVIEW WHERE HNO IN (
+                <foreach collection="hno" item="tmp" separator = ", ">
+                        #{tmp} 
+                </foreach>
+                )) ORDER BY BNO DESC
+        </select>
+
+        <!-- 검색 결과 최신순 + 페이지네이션 -->
+        <select id="selectBoardListDESC"  resultType="com.example.entity.Board" parameterType="map">
+                SELECT * FROM( SELECT B.*, ROW_NUMBER() OVER (ORDER BY REGDATE DESC) ROWN FROM BOARD B WHERE TITLE LIKE '%' || #{text} || '%' ) WHERE ROWN BETWEEN #{start} AND #{start}+11
+        </select>
+
+        <!-- 페이지네이션을 위한 게시글 전체개수 구하기 -->
+        <select id="countList" parameterType="String" resultType="long">
+                SELECT COUNT (*) FROM (SELECT T1.*, ROW_NUMBER() OVER (ORDER BY REGDATE DESC) ROWN FROM (SELECT B.*,M.NICKNAME FROM BOARD B INNER JOIN MEMBER M ON (B.USERID=M.USERID)) T1 WHERE TITLE LIKE '%' || #{text} || '%')
+        </select>
+
+
+
+        <!--======================================== 상세검색(검색창에 검색어도 입력)============================================ -->
+
+        <!-- 공항 해시태그 검색 포함 제목 검색 -->
+        <select id="hashtagTitleSearch" parameterType="map" resultType="com.example.dto.BoardViewDTO">
+                SELECT * FROM  (SELECT * ,ROW_NUMBER() OVER (ORDER BY BNO DESC) ROWN FROM (SELECT * FROM BOARDVIEW WHERE HNO IN (
+                <foreach collection="hno" item="tmp" separator = ", ">
+                        #{tmp} 
+                </foreach>
+                ))WHERE TITLE LIKE '%' || #{text} || '%') WHERE ROWN BETWEEN #{start} AND #{start}+11
+                
+        </select>
+
+        <!-- 공항 해시태그 검색 포함 내용 검색 -->
+        <select id="hashtagContentSearch" parameterType="map" resultType="com.example.dto.BoardViewDTO">
+                SELECT * FROM  (SELECT * ,ROW_NUMBER() OVER (ORDER BY BNO DESC) ROWN FROM (SELECT * FROM BOARDVIEW WHERE HNO IN (
+                <foreach collection="hno" item="tmp" separator = ", ">
+                        #{tmp} 
+                </foreach>
+                ))WHERE CONTENT LIKE '%' || #{text} || '%') WHERE ROWN BETWEEN #{start} AND #{start}+11
+        </select>
+
+         <!-- 공항 해시태그 검색 포함 제목+내용 검색 -->
+        <select id="hashtagTitleContentSearch" parameterType="map" resultType="com.example.dto.BoardViewDTO">
+                SELECT * FROM  (SELECT * ,ROW_NUMBER() OVER (ORDER BY BNO DESC) ROWN FROM (SELECT * FROM BOARDVIEW WHERE HNO IN (
+                <foreach collection="hno" item="tmp" separator = ", ">
+                        #{tmp} 
+                </foreach>
+                )) WHERE CONTENT LIKE '%' || #{text} || '%' AND TITLE LIKE '%' || #{text} || '%') WHERE ROWN BETWEEN #{start} AND #{start}+11
+        </select>
+
+
+        <!--============================================ 인기/조회수 높은 게시물================================================ -->
+
+        <!-- 검색 결과 조회순 -->
+        <select id="selectBoardListHITDESC"  resultType="com.example.entity.Board">
+                SELECT * FROM( SELECT B.*, ROW_NUMBER() OVER (ORDER BY HIT DESC) ROWN FROM BOARD B WHERE TITLE LIKE '%' || #{text} || '%' ) WHERE ROWN BETWEEN #{start} AND #{start}+11 ORDER BY HIT DESC
+        </select>
+        <!-- 검색 결과 댓글순 -->
+        <select id="selectBoardListREPLYDESC" resultType="com.example.dto.ReplyCountViewDTO">
+                SELECT * FROM REPLYCOUNTVIEW ORDER BY CNT DESC;
+        </select>
+        <!-- 검색 결과 좋아요순 -->
+        <select id="CountingLikeDESC" resultType="com.example.dto.LikeCountViewDTO">
+                SELECT * FROM LIKECOUNTVIEW ORDER BY CNT DESC;
+        </select>
+
+        <!--===================================좋아요 구현 매핑=======================================-->
+        
+        <!-- LIKETBL 조회  - (BNO AND USERID) mapper -->
+        <select id="selectLike" parameterType="com.example.entity.Likes" resultType="int">
+                SELECT COUNT(*) FROM LIKES WHERE BNO=#{board.bno} AND USERID=#{member.userid}
+        </select>
+
+        
+        <!-- LIKE 테이블에 보드 게시물에서 좋아요한 정보 집어넣기 -->
+        <insert id="PostLike" parameterType="com.example.entity.Likes">
+                INSERT INTO LIKES (LNO,USERID,BNO)
+                        VALUES(SEQ_LIKES_NO.NEXTVAL,#{member.userid},#{board.bno});
+        </insert>
+
+        <!-- 좋아요 삭제 -->
+        <delete id="DeleteLike1" parameterType="map">
+                <!-- DELETE FROM LIKES WHERE BNO=#{board.bno} AND USERID=#{member.userid} -->
+                DELETE FROM LIKES WHERE BNO=#{bno} AND USERID=#{userid}
+        </delete>
+
+        <!-- 마이페이지에서 좋아요 삭제 -->
+        <delete id="DeleteLike" parameterType="com.example.entity.Likes">
+                DELETE FROM LIKES WHERE BNO=#{board.bno} AND USERID=#{member.userid}
+                <!-- DELETE FROM LIKES WHERE BNO=#{bno} AND USERID=#{userid} -->
+        </delete>
+
+
+        <!-- 좋아요 DB 카운팅 -->
+        <select id="CountingLike" parameterType="Long" >
+                SELECT COUNT(*) FROM LIKES WHERE BNO=#{bno}
+        </select>
+
+        <!-- 게시글 하위 좋아요 삭제 -->
+        <select id="deleteOneLikes" parameterType="Long">
+                DELETE FROM LIKES WHERE BNO = #{bno}
+        </select>
+
+<!-- =================================== 게시판 글쓰기 ============================================== -->
+
+        <!-- 게시판 글쓰기 -->
+        <!-- VALUES(SEQ_BOARD_NO.NEXTVAL,#{title},#{content}, 0, to_date(sysdate,'YYYY-MM-DD HH24:mi.SS'), #{member.userid}) -->
+        <!-- VALUES(SEQ_BOARD_NO.NEXTVAL,#{title},#{content}, 0, CURRENT_TIMESTAMP, #{member.userid}) -->
+        <insert id ="insertBoardOne" parameterType="com.example.entity.Board" >
+                INSERT INTO BOARD(BNO, TITLE, CONTENT, HIT, REGDATE, USERID )
+                 VALUES(SEQ_BOARD_NO.NEXTVAL,#{title},#{content}, 0, to_date(sysdate,'yyyy-mm-dd hh24:mi'), #{member.userid})
+                
+        </insert>
+
+        <!-- 게시판 글쓰기 - 이미지 등록을 위한 글번호 조회 -->
+        <!-- SELECT BNO FROM BOARD WHERE TITLE = 'TEST제목44' AND CONTENT='sdfsdwerwerw' AND USERID='customer1' -->
+        <select id="selectBoardBno" parameterType="map" resultType="Long">
+                SELECT MAX(BNO) FROM BOARD WHERE TITLE=#{title} AND CONTENT=#{content} AND USERID=#{userid};
+        </select>
+
+
+        <!-- 완료 - 해시태그 여러개 등록 -->
+        <insert id="insertHashtagMapping" parameterType="list">
+                INSERT INTO HASHTAGMAPPING (HMAPNO, BNO, HNO)
+                SELECT SEQ_HASHTAGMAPPING_NO.NEXTVAL, T1.* FROM (
+                <foreach collection='list' item='tmp' separator='UNION ALL '>
+                        SELECT '${tmp.bno}' BNO,
+                        '${tmp.hno}' HNO
+                        FROM DUAL
+                </foreach>
+                ) T1
+        </insert>
+
+
+
+        <!-- DELETE FROM MYTABLE
+        WHERE (ID, NAME) IN (SELECT 1 AS ID, 'xyz' AS NAME FROM dual UNION ALL
+                     SELECT 2 AS ID, 'abc' AS NAME FROM dual UNION ALL
+                     SELECT 3 AS ID, 'abc' AS NAME FROM dual); -->
+        <!-- 해시태그 여러개 삭제하기 -->
+        <delete id="deleteHashtagMapping" parameterType="list" >
+                <!-- <foreach collection='list' item='tmp' separator=","> -->
+                <!-- DELETE FROM HASHTAGMAPPING WHERE (BNO, HNO) IN -->
+                DELETE FROM HASHTAGMAPPING 
+                <where>
+                <foreach collection='list' item='tmp' separator='OR '>
+                (BNO = #{tmp.bno} AND HNO = #{tmp.hno})
+                </foreach>
+                </where>
+        </delete>
+
+
+        <!-- 게시글 하위 해시태그 매핑 삭제 -->
+        <delete id="deleteHashtagOneBoard" parameterType="Long" >
+                DELETE FROM HASHTAGMAPPING WHERE BNO = #{bno}
+        </delete>
+
+        <!-- 조회수 증가 -->
+        <update id="UpdateHit" parameterType="Long">
+                UPDATE BOARD SET HIT=HIT+1 WHERE BNO = #{bno}
+        </update>
+
+        <!-- 글 수정 -->
+        <update id="updateoneBoard" parameterType="com.example.entity.Board" >
+                UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content} WHERE BNO=#{bno}
+        </update>
+
+        <!-- resultMap -->
+        <resultMap id="board" type="com.example.entity.Board">
+            <id property="bno" column="bno" />
+            <id property="title" column="title"/>
+            <id property="content" column="content"/>
+            <id property="hit" column="hit" />
+            <id property="regdate" column="regdate" />
+            
+            <association property="member" javaType="com.example.entity.Member">
+             <result property="userid"  column="userid" />
+             <result property="userpw"  column="userpw" />
+             <result property="phone"  column="phone" />
+             <result property="nickname"  column="nickname" />
+             <result property="birth"  column="birth" />
+             <result property="role"  column="role" />
+             <result property="block"  column="block" />
+             <result property="airportname"  column="airportname" />
+             <result property="regdate" column="regdate" />
+             </association>
+        </resultMap>
+
+        <!--  글 1개 조회를 위한 resultMap, association 선언 -->
+        <!-- <resultMap id="board" type="com.example.entity.Board">
+            <id property="bno" column="bno" />
+            <result property="title" column="title"/>
+            <result property="content" column="content"/>
+            <result property="hit" column="hit" />
+            <result property="regdate" column="regdate" />
+            <association property="member" column="userid" javaType="com.example.entity.Member" resultMap="member" />
+        </resultMap>
+
+        <resultMap id="member"  type="com.example.entity.Member" >
+             <id property="userid"  column="userid" />
+             <result property="userpw"  column="userpw" />
+             <result property="phone"  column="phone" />
+             <result property="nickname"  column="nickname" />
+             <result property="birth"  column="birth" />
+             <result property="role"  column="role" />
+             <result property="block"  column="block" />
+             <result property="airportname"  column="airportname" />
+             <result property="regdate" column="regdate" />
+        </resultMap> -->
+        <!--  글 1개 조회 -->
+        <select id="selectBoardOne" parameterType="Long" resultMap="board">
+                SELECT * FROM BOARD WHERE BNO = #{bno}
+        </select>
+
+        <select id="selectBoardOne1" parameterType="Long" resultType="com.example.dto.BoardSelectOneDto">
+                SELECT * FROM BOARD WHERE BNO = #{bno}
+        </select>
+
+        <!-- 
+                > - &gt;
+                < - &lt;
+                >= - &gt;=
+                <= - &lt;=
+         -->
+
+        <!-- 상세 다음글  -->
+        <select id="selectBoardNext" resultType="Long">
+                SELECT NVL(MIN(BNO), 0) FROM BOARD WHERE BNO &gt; #{bno}
+        </select>
+
+        <!-- 상세 이전글  -->
+        <!-- selectBoardPrev -->
+        <select id="selectBoardPrev" resultType="Long">
+                SELECT NVL(MAX(BNO), 0) FROM BOARD WHERE BNO &lt; #{bno}
+        </select>
+
+        <!-- 게시글 삭제 -->
+        <delete id="deleteOneBoard" parameterType="Long" >
+                DELETE FROM BOARD WHERE BNO = #{bno}
+        </delete>
+
+
+
+        <!-- ================================= BOARDMAINVIEW ================================= -->
+
+        <!-- BOARDMAINVIEW에서 BNO에 해당하는 USERID 조회 -->
+        <!-- SELECT * FROM BOARDMAINVIEW WHERE BNO=12 -->
+        <select id="selectOneUserBoardView" parameterType="Long" resultType="com.example.dto.BoardMainViewDTO">
+                SELECT * FROM BOARDMAINVIEW WHERE BNO=#{bno}
+        </select>
+
+
+
+        <!-- =================================== hashtag 검색 구현 ==================================== -->
+
+
+        <!-- SELECT T11.*, T22.NAME
+                FROM 
+                (SELECT T1.*, T2.HMAPNO,T2.HNO                       
+                FROM BOARD T1                             
+                INNER JOIN HASHTAGMAPPING  T2
+                ON (T1.BNO= T2.BNO)
+                )T11                             
+                INNER JOIN HASHTAG  T22
+                ON (T11.HNO= T22.HNO) -->
+
+
+
+
+        
+
+
+        
+        
+
+
+
+        <!-- ===============================게시글 상세 구현=================================== -->
+
+        <select id="selectBoardViewOne" parameterType="Long" resultType="com.example.dto.BoardViewDTO"> 
+                SELECT * FROM BOARDVIEW WHERE BNO=#{bno}
+        </select>
+
+        <!-- 상세 글 수정 -->
+        <update id="updateOneboardView" parameterType="Long" >
+                UPDATE BOARDVIEW SET TITLE=#{title}, CONTENT=#{content} HNO=#{hno} WHERE BNO=#{bno}
+        </update>
+
+
+<!-- ===================================게시판 하단(게시물 조회) =========================== -->
+        <select id="selectBoardrowPagelist" resultType="com.example.dto.BoardViewDTO">
+               SELECT T1.*,T2.* FROM (SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER (ORDER BY BNO ASC) ROWN FROM BOARDVIEW B) WHERE ROWN BETWEEN 1 AND 12 ORDER BY BNO DESC)T1 INNER JOIN LIKECNT T2
+        </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.CustomerImageMapper">
+
+<resultMap id="retMap" type="com.example.entity.MemberImg">
+        <result property="imagedata" column="IMAGEDATA" jdbcType="BLOB" javaType="[B"   />
+    </resultMap>
+    <select id="selectmemberimage" parameterType="Long" resultMap="retMap">
+        SELECT * FROM MEMBERIMG WHERE MIMAGENO= #{mimageno}
+    </select>
+
+    <select id="selectmemberimageList" parameterType="String" resultType="com.example.entity.MemberImg">
+        SELECT * FROM MEMBERIMG WHERE USERID=#{member.userid}
+    </select>
+
+    <update id="updatememberimage" parameterType="com.example.entity.MemberImg">
+        UPDATE MEMBERIMG SET IMAGENAME=#{imagename}, IMAGESIZE=#{imagesize}, IMAGETYPE=#{imagetype} , IMAGEDATA=#{imagedata, jdbcType = BLOB} WHERE MIMAGENO=#{mimageno}  
+    </update>
+    
+    <update id="deletememberImage" parameterType="com.example.entity.MemberImg">
+        UPDATE MEMBERIMG SET IMAGENAME=NULL, IMAGESIZE=NULL, IMAGETYPE=NULL , IMAGEDATA=NULL WHERE MIMAGENO=#{mimageno}  
+    </update>
+
+    <!-- SELECT MIMAGENO FROM MEMBERIMG WHERE USERID='www' -->
+    <select id="selectMemberImageNo" parameterType="String" resultType="com.example.dto.CustomerImageDTO">
+        SELECT M.MIMAGENO, M.APIIMAGEURL FROM MEMBERIMG M WHERE USERID=#{userid}
+    </select>
+</mapper>

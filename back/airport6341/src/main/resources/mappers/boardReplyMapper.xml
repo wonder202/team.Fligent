@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BoardReplyMapper">
+
+        <!-- 게시글 1개 조회시 해당 게시글에 등록된 댓글 목록 조회(8개씩 가져오기) + 정렬(오래된 순) -->
+        <select id="selectBoardReplyList" parameterType="map" resultType="com.example.dto.BoardOneReplyDto">
+        SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM 
+        (SELECT R.RNO, R.CONTENT, R.REGDATE, M.NICKNAME, R.USERID, ROW_NUMBER() OVER (ORDER BY R.REGDATE ASC) ROWN FROM
+                (SELECT * FROM REPLY WHERE BNO = #{bno} ORDER BY REGDATE ASC) R
+                INNER JOIN MEMBER M ON M.USERID = R.USERID)
+        WHERE ROWN BETWEEN #{page} AND #{page}+7
+        </select>
+
+        <!-- 게시글 1개 조회시 해당 게시글에 작성된 댓글 개수 COUNT (페이지네이션 COUNT) -->
+        <select id="boardReplyCount" parameterType="Long" resultType="Long">
+        SELECT COUNT (*) FROM 
+        (SELECT R.*, M.NICKNAME FROM
+          (SELECT * FROM REPLY WHERE BNO = #{bno} ORDER BY REGDATE ASC) R
+          INNER JOIN MEMBER M ON M.USERID = R.USERID)
+        </select>
+
+        <!-- 게시글 하위 댓글 삭제 -->
+        <delete id="deleteOneReply" parameterType="Long" >
+                DELETE FROM REPLY WHERE BNO = #{bno}
+        </delete>
+
+        <!-- 게시글 댓글 수정시 댓글 정보 1개 불러오기 -->
+        <select id="boardSelectOneReply" parameterType="Long" resultType="BoardOneReplyDto">
+        SELECT R.*, M.NICKNAME FROM
+          (SELECT * FROM REPLY WHERE RNO = #{rno} ORDER BY REGDATE ASC) R
+          INNER JOIN MEMBER M ON M.USERID = R.USERID
+        </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- 댓글 달기  -->
+        <insert id ="insertBoardReplyOne" parameterType="com.example.entity.Reply" >
+        INSERT INTO REPLY(RNO,CONTENT,REGDATE,BNO,USERID  )
+                VALUES(SEQ_REPLY_NO.NEXTVAL, #{content}, to_date(sysdate,'yyyy-mm-dd hh24:mi'),#{board.bno}, #{member.userid})
+        </insert>
+
+
+
+        <!-- 댓글 조회를 위한 resultMap -->
+        <resultMap id="Reply" type="com.example.entity.Reply">
+            <id property="rno" column="RNO" />
+            <id property="content" column="CONTENT" />
+            <id property="regdate" column="REGDATE" />
+        
+            <association property="Member"  javaType="com.example.entity.Member" >
+                 <result property="userid"  column="USERID" />
+                 <result property="nickname"  column="NICKNAME" />
+            </association>
+
+            <association property="Board"  javaType="com.example.entity.Board" >
+                 <result property="bno"  column="BNO" />
+            </association>
+        </resultMap>
+
+        <!-- 댓글 조회 -->
+        <select id="selectReplyOne" parameterType="Long" resultMap="Reply">
+        SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM REPLY WHERE RNO=#{rno}
+        </select>
+
+        <!-- 댓글 한개 조회 -->
+        <select id="selectReplyDTOOne" parameterType="Long" resultType="com.example.dto.BoardOneReplyDto">
+        SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM REPLY WHERE RNO=#{rno}
+        </select>
+
+        <!-- 댓글 수정 -->
+        <update id="updateoneReply" parameterType="com.example.entity.Reply">
+        UPDATE REPLY SET CONTENT=#{content} WHERE BNO=#{board.bno} AND RNO=#{rno}
+        </update>
+
+        <!-- 댓글 삭제 -->
+        <delete id="deleteoneReply" parameterType="com.example.entity.Reply">
+          DELETE REPLY WHERE RNO=#{rno}
+        </delete>
+
+        <!-- 게시글에 해당하는 댓글 전체조회 -->
+        <!-- SELECT * FROM REPLY WHERE BNO=131 ORDER BY REGDATE ASC -->
+        <select id="selectAllReply" parameterType="Long" resultType="com.example.entity.Reply">
+          SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM REPLY WHERE BNO = #{bno} ORDER BY RNO ASC
+        </select>
+
+</mapper>

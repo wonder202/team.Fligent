@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+
+<body>    
+    <div class="container" style="margin :100px; ">
+    <h3>회원가입</h3>
+
+    <form th:action="@{/member/join.do}" method="post">
+        아이디 : <input type="text" name="userid" placeholder="abc@naver.com" /><br />
+        암호 : <input type="password" name="userpw" placeholder="암호" /><br />
+        <!-- 암호확인 : <input type="password" name="userpw1" placeholder="암호확인" /><br />         -->
+        연락처 : <input type="tel" name="phone" placeholder="010-000-0000" /><br />
+        닉네임 : <input type="text" name="nickname" placeholder="홍길동" /><br />
+        생년월일 : <input type="text" name="birth" placeholder="1995년1월11일->950111" /><br />
+<!--
+            // 1. text 타입
+            성별 : <input type="text" name="gender" placeholder="성별(M/F)" />    
+
+            // 2. select 타입
+            성별 : 
+            <select name="gender">
+                <option th:value="M" th:text="남"  />
+                <option th:value="F" th:text="여"  />
+            </select>
+    
+            // 3. radio 타입
+            성별 :
+            <input type ="radio" name="gender" value="M" /> 남
+            <input type ="radio" name="gender" value="F" /> 여
+            <br/>      
+-->   
+
+            권한 : 
+            <select name="role">
+                <option value="CUSTOMER">고객</option>
+                <option value="ADMIN">운영자</option>
+            </select><br/>
+            <br />
+        
+            <input type="submit" value="회원가입" />
+            <button><a th:href="@{/home.do}" value="홈" >홈</button></a>
+
+    </form>
+
+    </div>
+</body>
+</html>

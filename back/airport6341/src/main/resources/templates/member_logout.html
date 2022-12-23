@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그아웃</title>
+</head>
+
+<body>
+    <div class="container" style="margin :200px;">
+    <h3>로그아웃</h3>
+    
+    <form th:action="@{/member/logout.do}" method="post" it="form"
+        style="display:none">
+    </form>          
+    
+    <a th:href="@{/home.do}"><button> 홈</button></a>      
+    </div>
+
+    <script>
+        const form = document.getElementById('form');
+        form.submit();
+    </script>
+
+</body>
+</html>

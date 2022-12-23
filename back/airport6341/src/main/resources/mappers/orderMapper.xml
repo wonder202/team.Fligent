@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.OrderMapper">
+
+
+    <insert id="insertcustomeraddress" parameterType="com.example.dto.AddressListDTO">
+        INSERT INTO ADDRESS(ANO,ADDRESS,COMMENT,POSTCODE,REGDATE,USERID,NAME,PHONE,DETAILADDRESS)
+                VALUES(SEQ_ADDRESS_NO.NEXTVAL,#{address},#{comment},#{postcode},CURRENT_TIMESTAMP,#{userid},#{name},#{phone},#{detailaddress} )
+    </insert>
+
+
+    <!-- <select id="selectOrdersCode" resultType="Long">
+        SELECT SEQ_ORDERS_CODE.NEXTVAL FROM DUAL
+    </select> -->
+
+
+    <insert id="insertbatchCustomerOrders" parameterType="List">
+        <selectKey keyProperty= "ordersgroup" resultType="Long" order="BEFORE">
+            SELECT SEQ_ORDERS_CODE.NEXTVAL FROM DUAL
+        </selectKey>
+        <!-- 시퀀스 있음. -->
+        INSERT INTO ORDERS(ONO,CNT,REGDATE,INO,USERID,ORDERCODE)
+        SELECT SEQ_ORDERS_NO.NEXTVAL, T1.* FROM(
+            <foreach collection = 'list' item = 'order' separator = ' UNION ALL '>
+                SELECT  '${order.cnt}' CNT , CURRENT_TIMESTAMP, '${order.ino}' INO,'${order.userid}' USERID , '${ordersgroup}' ORDERCODE
+                FROM DUAL
+            </foreach>
+        ) T1
+    </insert>
+
+    <select id="selectcustomer" parameterType="String" resultType="com.example.dto.OrderMemberDTO">
+        SELECT M.USERID,M.PHONE,M.NICKNAME FROM MEMBER M WHERE USERID=#{userid}
+    </select>
+
+    <select id="selectAddressList" parameterType="String" resultType="com.example.dto.AddressListDTO">
+       SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM (SELECT A.*, ROW_NUMBER() OVER (ORDER BY REGDATE DESC) ROWN FROM (SELECT * FROM ADDRESS WHERE USERID=#{userid} ORDER BY REGDATE DESC )A) WHERE ROWN BETWEEN 1 AND 3
+    </select>
+
+    <!-- SELECT * FROM (SELECT T1.*,T2.NAME,T2.PRICE,T1.CNT*T2.PRICE+3000 TOT FROM CART T1 INNER JOIN ITEM T2 ON(T1.INO=T2.INO)) WHERE CNO IN (48,49,50) AND USERID='a1'  -->
+    <select id="selectitem" parameterType="map" resultType="com.example.dto.OrderItemDTO">
+        SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM (SELECT T1.*,T2.NAME,T2.PRICE,T1.CNT*T2.PRICE TOT FROM CART T1 INNER JOIN ITEM T2 ON(T1.INO=T2.INO)) WHERE CNO IN(
+            <foreach collection="cno" item ="tmp" separator=" , " >
+                #{tmp}
+            </foreach>
+        )
+        AND USERID=#{userid}
+    </select>
+
+    <!-- SELECT T1.*,T2.INO,T2.NAME,T2.PRICE FROM ORDERS T1 INNER JOIN ITEM T2 ON T1.INO=T2.INO WHERE T1.USERID=#{userid} ORDER BY REGDATE DESC  -->
+     <select id="selectOrderList" parameterType="map" resultType="com.example.dto.OrderListDTO">
+        SELECT *, TO_CHAR(REGDATE, 'YYYY-MM-DD') REGDATE FROM (SELECT T4.* FROM (SELECT ROW_NUMBER() OVER (ORDER BY T3.REGDATE DESC) ROWN, T3.* FROM (SELECT T1.*,T2.NAME,T2.PRICE FROM ORDERS T1 INNER JOIN ITEM T2 ON (T1.INO=T2.INO)) T3) T4 WHERE T4.ROWN BETWEEN #{start} AND #{start}+9 ORDER BY REGDATE DESC) WHERE USERID=#{userid}
+    </select>
+
+    <!-- SELECT * FROM (SELECT ORDERCODE FROM ORDERS WHERE USERID = 'c1'  ORDER BY REGDATE DESC ) WHERE ROWNUM = 1 -->
+         <select id="selectOrdercode" parameterType="String" resultType="Long">
+        SELECT * FROM (SELECT ORDERCODE FROM ORDERS WHERE USERID=#{userid} ORDER BY REGDATE DESC ) WHERE ROWNUM=1 
+    </select>
+
+    <select id="OrderCountList" parameterType="String" resultType="Long">
+        SELECT COUNT (*) FROM (SELECT T3.* FROM (SELECT T1.*,T2.NAME,T2.PRICE FROM ORDERS T1 INNER JOIN ITEM T2 ON (T1.INO=T2.INO))T3 WHERE USERID=#{userid})
+    </select>
+
+    <delete id="deleteOrder" parameterType="map">
+        DELETE FROM ORDERS WHERE ONO=#{ono} AND USERID=#{userid}
+    </delete>
+
+    <update id="updatecnt" parameterType="map">
+        UPDATE CART SET CNT=#{cnt} WHERE CNO=#{cno}
+    </update>
+
+    <delete id="deleteItemFromCartWhenOrder" parameterType="List">
+        DELETE FROM CART WHERE 
+        <foreach collection="list" item="tmp" separator=" OR ">
+        (CNO=#{tmp.cno} AND USERID=#{tmp.userid})
+        </foreach>
+    </delete>
+</mapper>
