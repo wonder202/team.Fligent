@@ -2,22 +2,28 @@
 - Flight와 Agent의 합성어로써, 비행을 도와주는 이를 뜻합니다.
 
 - 공공API를 활용한 국내 주요 공항 내외 실시간 정보제공, 사용자 기반 커뮤니티, 쇼핑몰 서비스를 접목한 종합 플랫폼입니다.
+
 ## 🌐사이트 보러가기
 <http://35.79.223.79:8080/fligent>
+
 ## ⌛개발기간
 2022/09/19 → 2022/11/30
+
 ## 🫂팀 구성
 FE 1명, BE 3명
+
 ## 🔖주요기능
 - **Open API를 활용한 국내 주요 공항 내외 정보 · 실시간 비행 스케쥴 조회**
 - **사용자간 정보 공유가 가능한 커뮤니티 서비스**
 - **비행에 필요한 물품 쇼핑 서비스**
+- 
 ## 🛠️개발스택
 **Front-End :** HTML5, CSS3, Vue.js, JavaScript, Element-Plus, Bootstrap, Node.js
 
 **Back-End :** Java, Spring boot, Node.js
 
 **DB :** JPA, Oracle, MyBatis
+
 ## 🙋🏻담당업무
 **Front-end(기여도 95%)**
 
