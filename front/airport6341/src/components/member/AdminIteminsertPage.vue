@@ -46,15 +46,15 @@ export default {
         const router = useRouter();
         const form = ref([]);
         const state = reactive({
-            file     : [],
-            image    : null,
-            name : '',
+            file    : [],
+            image   : null,
+            name    : '',
             content : '',
-            price : 0,
-            quantity : 0,
+            price   : 0,
+            quantity: 0,
             icateno : 1,
-            userid : 'admin',
-            token: sessionStorage.getItem("token"),
+            userid  : 'admin',
+            token   : sessionStorage.getItem("token"),
         });
         const handleInsert = async() => {
             if(state.name === ''){

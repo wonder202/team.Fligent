@@ -111,25 +111,25 @@ export default {
         const form = ref([]);
 
         const state = reactive({
-            token: sessionStorage.getItem("token"),
-            cno: [],
+            token   : sessionStorage.getItem("token"),
+            cno     : [],
             // cno     : route.query.cno,
-            row: '',
-            row1: '',
-            name: '',
-            phone: '',
-            phone1: '',
-            phone2: '',
+            row     : '',
+            row1    : '',
+            name    : '',
+            phone   : '',
+            phone1  : '',
+            phone2  : '',
             postcode: '',
-            address: '',
+            address : '',
             detailaddress: '',
-            comment: '',
-            cnt: '',
-            ino: '',
+            comment : '',
+            cnt     : '',
+            ino     : '',
             itemprice: [],
-            total: '',
+            total   : '',
             ordercode: '', // 주문DB저장 완료시 리턴 되는 주문번호(ordercode)
-            orderret: false
+            orderret : false
 
         });
 

@@ -10,7 +10,7 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-const app= createApp(App);
+const app = createApp(App);
 app.use(routes);
 app.use(stores);
 app.use(BootstrapVue3)

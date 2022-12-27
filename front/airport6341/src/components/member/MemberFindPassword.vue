@@ -63,18 +63,18 @@ export default {
         const router = useRouter();
         const form = ref([]);
         const state = reactive({
-            userid : '',
-            birth  : '',
-            phone  : '',
-            phone1 : '',
-            phone2 : '',
-            sendresult : 0, // 인증번호입력 input 태그 v-if를 위한 변수
-            mailcode : '', // 이메일로 받은 인증코드
+            userid      : '',
+            birth       : '',
+            phone       : '',
+            phone1      : '',
+            phone2      : '',
+            sendresult  : 0, // 인증번호입력 input 태그 v-if를 위한 변수
+            mailcode    : '', // 이메일로 받은 인증코드
             userinputcode : '', // 사용자가 입력한 인증코드
-            codeckeck : ' 인증코드입력 ', // 아이디 중복확인처럼 변경하고싶어요
-            codeckeckret : 0, // 인증코드 비교결과 (일치시 1로 변경)
-            newpw : '', // 변경할 암호
-            newpw1 : '' // 변경할 암호 확인용
+            codeckeck   : ' 인증코드입력 ', // 아이디 중복확인처럼 변경하고싶어요
+            codeckeckret: 0, // 인증코드 비교결과 (일치시 1로 변경)
+            newpw       : '', // 변경할 암호
+            newpw1      : '' // 변경할 암호 확인용
         });
 
         // 사용자에게 인증 이메일 발송

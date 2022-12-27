@@ -67,15 +67,15 @@ export default {
         const form = ref([]);
         
         const state = reactive({
-            userid: '',
-            userpw: '',
-            token: '',
+            userid  : '',
+            userpw  : '',
+            token   : '',
         
             // 네이버 api 로그인용 변수
-            naverClientId : 'Wg77gLgzjURrRdBDfnhx',
-            // callbackUrl : 'http://localhost:9090/naver_callback', // vue 서버 구동시 리다이렉트 URI
-            callbackUrl : 'http://1.234.5.158:28080/fligent/naver_callback', // 톰캣 배포시 리다이렉트 URI
-            states : 'airport6341' // csrf 공격을 방지하기 위해 애플리케이션에서 생성한 상태 토큰값으로 URL 인코딩을 적용한 값을 사용
+            naverClientId   : 'Wg77gLgzjURrRdBDfnhx',
+            // callbackUrl  : 'http://localhost:9090/naver_callback', // vue 서버 구동시 리다이렉트 URI
+            callbackUrl     : 'http://1.234.5.158:28080/fligent/naver_callback', // 톰캣 배포시 리다이렉트 URI
+            states          : 'airport6341' // csrf 공격을 방지하기 위해 애플리케이션에서 생성한 상태 토큰값으로 URL 인코딩을 적용한 값을 사용
                     
         });
         

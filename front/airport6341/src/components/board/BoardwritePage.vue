@@ -39,18 +39,18 @@ export default {
         const form = ref([]);
 
         const state = reactive({
-            file     : [],
-            fileurl  : [],
-            image    : null,
-            title    : '',
-            content  : '',
-            token    : sessionStorage.getItem("token"),
-            userid   : '',
-            hashtag : [], // 해시태그의 번호를 받을 배열 선언
+            file        : [],
+            fileurl     : [],
+            image       : null,
+            title       : '',
+            content     : '',
+            token       : sessionStorage.getItem("token"),
+            userid      : '',
+            hashtag     : [], // 해시태그의 번호를 받을 배열 선언
             selecthashtag : [], // 선택한 여러개의 해시태그 번호를 받을 배열
-            hname : [ '김포공항', '인천공항', '김해공항', '제주공항', '먹거리', '놀거리', 
+            hname       : [ '김포공항', '인천공항', '김해공항', '제주공항', '먹거리', '놀거리', 
                         '행사', '명소', '가족', '친구', '연인', '신혼' ], // 버튼 생성을 위한 해시태그의 이름
-            hcolor : ['#0339A6','#F2D1C9', '#0339A6','#F2D1C9','#0339A6','#F2D1C9','#0339A6','#F2D1C9','#0339A6','#F2D1C9', '#0339A6','#F2D1C9'], // 해시태그 버튼 색(2가지 반복)
+            hcolor      : ['#0339A6','#F2D1C9', '#0339A6','#F2D1C9','#0339A6','#F2D1C9','#0339A6','#F2D1C9','#0339A6','#F2D1C9', '#0339A6','#F2D1C9'], // 해시태그 버튼 색(2가지 반복)
         });
         
         //state.file의 변수에 수동으로 첨부 이미지 정보를 넣기

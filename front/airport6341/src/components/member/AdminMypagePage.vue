@@ -90,20 +90,20 @@ export default {
         const router = useRouter();
 
         const state = reactive({
-            list : [],
-            tmp : '',
-            list1 : [],
-            list2 : [],
-            page : 1,
-            page1 : 1,
-            page2 : 1,
-            token: sessionStorage.getItem("token"),
-            pages : 0,
-            pages1 : 0,
-            pages2 : 0,
-            count : 0,
-            count1 : 0,
-            count2 : 0,
+            list    : [],
+            tmp     : '',
+            list1   : [],
+            list2   : [],
+            page    : 1,
+            page1   : 1,
+            page2   : 1,
+            token   : sessionStorage.getItem("token"),
+            pages   : 0,
+            pages1  : 0,
+            pages2  : 0,
+            count   : 0,
+            count1  : 0,
+            count2  : 0,
             icateno : '1'
         });
 

@@ -55,16 +55,16 @@ export default {
 
         const state = reactive({
             token: sessionStorage.getItem("token"),
-            row  : '',
-            name : '',
+            row     : '',
+            name    : '',
             content : '',
-            price : '',
-            quantity : '',
-            ino : Number(route.query.ino),
-            file        : [],
-            fileurl     : [],
-            imgurl      : [],
-            imgno       : []
+            price   : '',
+            quantity: '',
+            ino     : Number(route.query.ino),
+            file    : [],
+            fileurl : [],
+            imgurl  : [],
+            imgno   : []
         });
 
         const handleData = async() => {

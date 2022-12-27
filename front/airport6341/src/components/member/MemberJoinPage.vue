@@ -109,8 +109,8 @@ export default {
             phone2   : '',
             idcheck  : '',
             nicknamecheck : '',
-            airport  : 'GMP',
-            fileurl  : require('../../assets/defaultprofile.png'),
+            airport       : 'GMP',
+            fileurl       : require('../../assets/defaultprofile.png'),
             parsebirth    : 0,
         });
 
@@ -215,18 +215,22 @@ export default {
                 airportname:state.airport
             }
             const today = new Date(); // 오늘 날짜를 가져옴
-            const yearNow = String(today.getFullYear());
-            const monthNow = String(today.getMonth() + 1);
-            const dayNow = String(today.getDate());
+            const yearNow = String(today.getFullYear()); //년도 변수 저장
+            const monthNow = String(today.getMonth() + 1); //month 변수 저장
+            const dayNow = String(today.getDate()); //일자 변수 저장
             let dayynow = "";
+            //일자 불러올때 형식 변경을 위한 로직
+            //ex) 202212'2' => 202212'02'
             if(dayNow.length == 1){
                 dayynow = "0" + dayNow;
             }
             else{
                 dayynow = dayNow
             }
-            const todayy = Number(yearNow + monthNow + dayynow);
+            const todayy = Number(yearNow + monthNow + dayynow); //ex)20221202
+            //사용자에 의해 입력된 birth변수를 문자열에서 숫자로 변환
             state.parsebirth = parseInt(state.birth);
+            //입력한 날짜가 현재 실제 날짜보다 클 경우 리턴
             if(state.parsebirth > todayy){
                 alert('오늘 이후의 날짜는 선택할 수 없습니다.')
                 return false;
@@ -248,7 +252,7 @@ export default {
                 state.file = e.target.files[0];
                 if(e.target.files && e.target.files[0]){
                     state.fileurl = URL.createObjectURL(e.target.files[0])
-                    // 위는 뷰스트립트문, 밑은 자바스크립트문
+                    // 위는 바꾼 로직, 밑은 처음에 만든 로직
                     // reader.onload = function(e) {
                     //     // document.createElement("preview");
                     //     document.getElementById('preview').src = e.target.result;
