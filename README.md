@@ -13,11 +13,11 @@ FE 1명, BE 3명
 - **사용자간 정보 공유가 가능한 커뮤니티 서비스**
 - **비행에 필요한 물품 쇼핑 서비스**
 ## 개발스택
-**Front-End** HTML5, CSS3, Vue.js, JavaScript, Element-Plus, Bootstrap, Node.js
+**Front-End :** HTML5, CSS3, Vue.js, JavaScript, Element-Plus, Bootstrap, Node.js
 
-**Back-End** Java, Spring boot, Node.js
+**Back-End :** Java, Spring boot, Node.js
 
-**DB** JPA, Oracle, MyBatis
+**DB :** JPA, Oracle, MyBatis
 ## 🙋🏻담당업무
 **Front-end(기여도 95%)**
 
