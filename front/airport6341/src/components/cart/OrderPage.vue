@@ -304,7 +304,7 @@ export default {
                 // 제이쿼리 사용을 위한 라이브러리
                 "https://code.jquery.com/jquery-1.12.4.min.js",
                 // 아임포트 라이브러리
-                "https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+                // "https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
             ];
             for (let i = 0; i < scripts.length; i++) {
                 let script = document.createElement('script');
@@ -378,113 +378,113 @@ export default {
 
 
         // 결제 API서비스(아임포트) 
-        const iamportPay = async (paycode) => {
-            // 결제 전 유효성 검사
-            if (state.name === '') {
-                alert('받는 분 성함을 입력하세요.')
-                form.value[0].focus();
-                return false;
-            }
-            if (state.phone === '') {
-                alert('받는 분 연락처를 입력하세요.')
-                form.value[1].focus();
-                return false;
-            }
-            if (state.phone1 === '') {
-                alert('받는 분 연락처를 입력하세요.')
-                form.value[6].focus();
-                return false;
-            }
-            if (state.phone2 === '') {
-                alert('받는 분 연락처를 입력하세요.')
-                form.value[7].focus();
-                return false;
-            }
-            if (state.postcode === '') {
-                alert('우편번호를 입력하세요.')
-                form.value[2].focus();
-                return false;
-            }
-            if (state.address === '') {
-                alert('주소를 입력하세요.')
-                form.value[3].focus();
-                return false;
-            }
-            if (state.detailaddress === '') {
-                alert('상세주소를 입력하세요.')
-                form.value[4].focus();
-                return false;
-            }
-            if (state.comment === '') {
-                alert('요청사항을 입력하세요.')
-                form.value[5].focus();
-                return false;
-            }
+        // const iamportPay = async (paycode) => {
+        //     // 결제 전 유효성 검사
+        //     if (state.name === '') {
+        //         alert('받는 분 성함을 입력하세요.')
+        //         form.value[0].focus();
+        //         return false;
+        //     }
+        //     if (state.phone === '') {
+        //         alert('받는 분 연락처를 입력하세요.')
+        //         form.value[1].focus();
+        //         return false;
+        //     }
+        //     if (state.phone1 === '') {
+        //         alert('받는 분 연락처를 입력하세요.')
+        //         form.value[6].focus();
+        //         return false;
+        //     }
+        //     if (state.phone2 === '') {
+        //         alert('받는 분 연락처를 입력하세요.')
+        //         form.value[7].focus();
+        //         return false;
+        //     }
+        //     if (state.postcode === '') {
+        //         alert('우편번호를 입력하세요.')
+        //         form.value[2].focus();
+        //         return false;
+        //     }
+        //     if (state.address === '') {
+        //         alert('주소를 입력하세요.')
+        //         form.value[3].focus();
+        //         return false;
+        //     }
+        //     if (state.detailaddress === '') {
+        //         alert('상세주소를 입력하세요.')
+        //         form.value[4].focus();
+        //         return false;
+        //     }
+        //     if (state.comment === '') {
+        //         alert('요청사항을 입력하세요.')
+        //         form.value[5].focus();
+        //         return false;
+        //     }
             
 
-            // console.log('paycode => ', paycode)
-            // await handleOrder();
-            // console.log('결제 결과 true ? => ',state.orderret)
+        //     // console.log('paycode => ', paycode)
+        //     // await handleOrder();
+        //     // console.log('결제 결과 true ? => ',state.orderret)
 
-            // if (state.orderret === true) {
-                var IMP = window.IMP;
-                IMP.init("imp54605428");
-                    // console.log('주문번호=> ', state.ordercode)
-                    // console.log('주문자 이름=> ', state.name)
-                    // console.log('주문 총 금액=> ', state.total)
-                    // console.log('주문자 연락처=> ', state.row1.phone)
-                    // console.log('주문자 주소=> ', state.address + state.detailaddress)
-                    // console.log('주문자 우편번호=> ', state.postcode)
-                // IMP.request_pay(param, callback) //결제창 호출
-                IMP.request_pay({ //param
-                    pg: paycode,
-                    pay_method: "card",
-                    merchant_uid: state.ordercode,
-                    name: state.name,
-                    amount: state.total,
-                    buyer_email: state.row1.userid,
-                    buyer_name: state.name,
-                    buyer_tel: state.row1.phone,
-                    buyer_addr: state.address + state.detailaddress,
-                    buyer_postcode: state.postcode,
-                    popup : true
-                }, 
-                async function (rsp) { // callback
-                    //성공할 때 실행 될 콜백 함수
-                    // console.log('결제정보 ===> ', window.IMP.request_Pay)
+        //     // if (state.orderret === true) {
+        //         var IMP = window.IMP;
+        //         IMP.init("imp54605428");
+        //             // console.log('주문번호=> ', state.ordercode)
+        //             // console.log('주문자 이름=> ', state.name)
+        //             // console.log('주문 총 금액=> ', state.total)
+        //             // console.log('주문자 연락처=> ', state.row1.phone)
+        //             // console.log('주문자 주소=> ', state.address + state.detailaddress)
+        //             // console.log('주문자 우편번호=> ', state.postcode)
+        //         // IMP.request_pay(param, callback) //결제창 호출
+        //         IMP.request_pay({ //param
+        //             pg: paycode,
+        //             pay_method: "card",
+        //             merchant_uid: state.ordercode,
+        //             name: state.name,
+        //             amount: state.total,
+        //             buyer_email: state.row1.userid,
+        //             buyer_name: state.name,
+        //             buyer_tel: state.row1.phone,
+        //             buyer_addr: state.address + state.detailaddress,
+        //             buyer_postcode: state.postcode,
+        //             popup : true
+        //         }, 
+        //         async function (rsp) { // callback
+        //             //성공할 때 실행 될 콜백 함수
+        //             // console.log('결제정보 ===> ', window.IMP.request_Pay)
 
-                    if (rsp.success == true) {
-                        await handleAddress();
-                        await handleOrder();
+        //             if (rsp.success == true) {
+        //                 await handleAddress();
+        //                 await handleOrder();
 
-                        if(state.orderret === true){
-                            // console.log('성공')
-                            var msg = '결제가 완료되었습니다.';
-                            // msg += '고유ID : ' + result_success.imp_uid;
-                            // msg += '상점 거래ID : ' + result_success.merchant_uid;
-                            // msg += '결제 금액 : ' + result_success.paid_amount;
-                            // msg += '카드 승인번호 : ' + result_success.apply_num;
-                            alert(msg);
-                            router.push({path:'/ordersuccess'});
-                        }
-                        else 
-                        {
-                            alert('주문에 실패하였습니다. 관리자에게 문의해주세요');
-                            router.push({path:'/home'});
-                        }
-                    }
-                    //실패시 실행 될 콜백 함수
-                    else {
-                        var msg1 = '결제에 실패하였습니다.';
-                        msg1 += '에러내용 : ' + rsp.error_msg;
-                        alert(msg1);
-                        router.push({path:'/cart'});
-                        // router.go();
-                    }
-                })
-                window.IMP
-            // }
-        }
+        //                 if(state.orderret === true){
+        //                     // console.log('성공')
+        //                     var msg = '결제가 완료되었습니다.';
+        //                     // msg += '고유ID : ' + result_success.imp_uid;
+        //                     // msg += '상점 거래ID : ' + result_success.merchant_uid;
+        //                     // msg += '결제 금액 : ' + result_success.paid_amount;
+        //                     // msg += '카드 승인번호 : ' + result_success.apply_num;
+        //                     alert(msg);
+        //                     router.push({path:'/ordersuccess'});
+        //                 }
+        //                 else 
+        //                 {
+        //                     alert('주문에 실패하였습니다. 관리자에게 문의해주세요');
+        //                     router.push({path:'/home'});
+        //                 }
+        //             }
+        //             //실패시 실행 될 콜백 함수
+        //             else {
+        //                 var msg1 = '결제에 실패하였습니다.';
+        //                 msg1 += '에러내용 : ' + rsp.error_msg;
+        //                 alert(msg1);
+        //                 router.push({path:'/cart'});
+        //                 // router.go();
+        //             }
+        //         })
+        //         window.IMP
+        //     // }
+        // }
 
 
         // const tossPay = async (paycode) => {
@@ -556,7 +556,7 @@ export default {
             handleOrder,
             search,
             handleCnt,
-            iamportPay,
+            // iamportPay,
             // tossPay
         }
     }

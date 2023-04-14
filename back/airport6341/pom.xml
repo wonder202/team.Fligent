@@ -37,18 +37,18 @@
 
 		<!-- 결제 API서비스 이용시 유효성검사 수행, Google 에서 만든 오픈소스 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
 		    <version>30.1.1-jre</version>
-		</dependency>
+		</dependency> -->
 
 	<!-- iamport 국내 PG결제 연동 결제 API서비스, 아임포트 -->
-		<dependency>
+		<!-- <dependency>
     		<groupId>com.github.iamport</groupId>
     		<artifactId>iamport-rest-client-java-hc</artifactId>
     		<version>0.0.2</version>
-		</dependency>
+		</dependency> -->
 
 
 		<!-- 사용자 이메일 인증을 위한 spring-boot-starter-mail 라이브러리 -->
